@@ -1,4 +1,6 @@
-# News-Filter
+# News Classifier
+
+One of the Intern Projects when working in [GeTui](https://www.getui.com/). Processed over 1 million real HTML data entries using this tool and completed accurate classification.
 
 Webpage classifier using embedding similarity. Mainly powered by [Qwen3-VL-Embedding-8B](https://huggingface.co/Qwen/Qwen3-VL-Embedding-8B) with hard-negative training and fine-tuning.
 
