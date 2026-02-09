@@ -131,4 +131,5 @@ python src/llm/embedding_classifier.py \
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/miralemzhang/News_Classifier-Intern_Project1?tab=MIT-1-ov-file) file for details.
+
