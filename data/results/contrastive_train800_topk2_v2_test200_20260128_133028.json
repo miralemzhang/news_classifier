@@ -1,0 +1,310 @@
+{
+  "timestamp": "2026-01-28 13:30:28",
+  "config": {
+    "train_count": 800,
+    "test_count": 200,
+    "top_k": 2,
+    "doc_version": "v2",
+    "data_path": "/home/zzh/webpage-classification/data/labeled/labeled.jsonl",
+    "save_path": null,
+    "load_path": "/home/zzh/webpage-classification/models/contrastive_train800_layers4.pt"
+  },
+  "overall": {
+    "total": 200,
+    "top1_accuracy": 0.7,
+    "top1_correct": 140,
+    "top1_recall": 0.7,
+    "top1_recall_count": 140,
+    "top2_recall": 0.89,
+    "top2_recall_count": 178,
+    "top2_reranker_accuracy": 0.595,
+    "top2_reranker_correct": 119,
+    "top2_reranker_net_gain": -21
+  },
+  "per_class": {
+    "时政": {
+      "accuracy": 0.35714285714285715,
+      "correct": 15,
+      "total": 42
+    },
+    "经济": {
+      "accuracy": 0.8,
+      "correct": 28,
+      "total": 35
+    },
+    "军事": {
+      "accuracy": 1.0,
+      "correct": 10,
+      "total": 10
+    },
+    "社会": {
+      "accuracy": 0.75,
+      "correct": 27,
+      "total": 36
+    },
+    "科技": {
+      "accuracy": 0.2857142857142857,
+      "correct": 2,
+      "total": 7
+    },
+    "体育": {
+      "accuracy": 0.8888888888888888,
+      "correct": 8,
+      "total": 9
+    },
+    "娱乐": {
+      "accuracy": 0.8518518518518519,
+      "correct": 23,
+      "total": 27
+    },
+    "其他": {
+      "accuracy": 0.17647058823529413,
+      "correct": 6,
+      "total": 34
+    }
+  },
+  "errors": [
+    {
+      "id": 804,
+      "title": "2025年中国人民银行工作会议召开",
+      "true": "其他",
+      "pred": "时政",
+      "topk": [
+        "经济",
+        "时政"
+      ],
+      "confidence": 0.0888671875
+    },
+    {
+      "id": 817,
+      "title": "Inflation, interest rates: IMF warns Australia fac",
+      "true": "社会",
+      "pred": "经济",
+      "topk": [
+        "经济",
+        "时政"
+      ],
+      "confidence": 0.064453125
+    },
+    {
+      "id": 821,
+      "title": "What’s open Australia Day 2026: shops, supermarket",
+      "true": "经济",
+      "pred": "其他",
+      "topk": [
+        "其他",
+        "社会"
+      ],
+      "confidence": 0.03173828125
+    },
+    {
+      "id": 838,
+      "title": "Gaurav Laghate to Lead Corporate Brand and PR as S",
+      "true": "经济",
+      "pred": "娱乐",
+      "topk": [
+        "娱乐",
+        "科技"
+      ],
+      "confidence": 0.036865234375
+    },
+    {
+      "id": 855,
+      "title": "काबुल के हाई सिक्योरिटी इलाके में होटल पर धमाका, क",
+      "true": "社会",
+      "pred": "军事",
+      "topk": [
+        "军事",
+        "时政"
+      ],
+      "confidence": 0.0267333984375
+    },
+    {
+      "id": 868,
+      "title": "Balvenie takes hit as 'Culinary Class Wars' chef I",
+      "true": "娱乐",
+      "pred": "其他",
+      "topk": [
+        "社会",
+        "其他"
+      ],
+      "confidence": 0.056640625
+    },
+    {
+      "id": 889,
+      "title": "Yahoo yodel to Taj Hotels' signature sonic sound, ",
+      "true": "经济",
+      "pred": "其他",
+      "topk": [
+        "其他",
+        "科技"
+      ],
+      "confidence": 0.037841796875
+    },
+    {
+      "id": 899,
+      "title": "中米グアテマラでギャングが警察を襲撃　警察官7人死亡　大統領は非常事態を宣言",
+      "true": "社会",
+      "pred": "军事",
+      "topk": [
+        "时政",
+        "军事"
+      ],
+      "confidence": 0.032470703125
+    },
+    {
+      "id": 902,
+      "title": "2026-01-19,",
+      "true": "其他",
+      "pred": "时政",
+      "topk": [
+        "时政",
+        "军事"
+      ],
+      "confidence": 0.03466796875
+    },
+    {
+      "id": 909,
+      "title": "UP eyes technology leadership in green hydrogen, t",
+      "true": "科技",
+      "pred": "经济",
+      "topk": [
+        "经济",
+        "时政"
+      ],
+      "confidence": 0.0194091796875
+    },
+    {
+      "id": 889,
+      "title": "Yahoo yodel to Taj Hotels' signature sonic sound, ",
+      "true": "经济",
+      "pred": "其他",
+      "topk": [
+        "其他",
+        "科技"
+      ],
+      "confidence": 0.037841796875
+    },
+    {
+      "id": 899,
+      "title": "中米グアテマラでギャングが警察を襲撃　警察官7人死亡　大統領は非常事態を宣言",
+      "true": "社会",
+      "pred": "军事",
+      "topk": [
+        "时政",
+        "军事"
+      ],
+      "confidence": 0.032470703125
+    },
+    {
+      "id": 902,
+      "title": "2026-01-19,",
+      "true": "其他",
+      "pred": "时政",
+      "topk": [
+        "时政",
+        "军事"
+      ],
+      "confidence": 0.03466796875
+    },
+    {
+      "id": 909,
+      "title": "UP eyes technology leadership in green hydrogen, t",
+      "true": "科技",
+      "pred": "经济",
+      "topk": [
+        "经济",
+        "时政"
+      ],
+      "confidence": 0.0194091796875
+    },
+    {
+      "id": 922,
+      "title": "Princess Eugenie of York has cut contact with her ",
+      "true": "娱乐",
+      "pred": "社会",
+      "topk": [
+        "时政",
+        "社会"
+      ],
+      "confidence": 0.06103515625
+    },
+    {
+      "id": 924,
+      "title": "Сили оборони Півдня: Ворог мінує Гуляйполе, оскіль",
+      "true": "时政",
+      "pred": "军事",
+      "topk": [
+        "军事",
+        "社会"
+      ],
+      "confidence": 0.058349609375
+    },
+    {
+      "id": 931,
+      "title": "Сили оборони у 2025 році уразили 719 цілей РФ, рос",
+      "true": "时政",
+      "pred": "军事",
+      "topk": [
+        "军事",
+        "社会"
+      ],
+      "confidence": 0.1142578125
+    },
+    {
+      "id": 933,
+      "title": "Сили оборони України просунулися біля Покровська т",
+      "true": "时政",
+      "pred": "军事",
+      "topk": [
+        "军事",
+        "社会"
+      ],
+      "confidence": 0.0634765625
+    },
+    {
+      "id": 942,
+      "title": "2026-01-19T11:00:00+00:00",
+      "true": "科技",
+      "pred": "社会",
+      "topk": [
+        "其他",
+        "社会"
+      ],
+      "confidence": 0.0289306640625
+    },
+    {
+      "id": 945,
+      "title": "31看世界 - 深夜潛行",
+      "true": "科技",
+      "pred": "其他",
+      "topk": [
+        "娱乐",
+        "其他"
+      ],
+      "confidence": 0.03369140625
+    },
+    {
+      "id": 955,
+      "title": "深度 | 电力行业网络安全态势研究",
+      "true": "科技",
+      "pred": "军事",
+      "topk": [
+        "军事",
+        "时政"
+      ],
+      "confidence": 0.0169677734375
+    },
+    {
+      "id": 956,
+      "title": "'Our politicians should not patronise the public –",
+      "true": "时政",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "其他"
+      ],
+      "confidence": 0.049560546875
+    }
+  ]
+}

@@ -1,0 +1,1788 @@
+Log 保存至: /home/zzh/webpage-classification/data/results/hard_negative_mining_train6000_topk2_test800_20260129_161153.log
+======================================================================
+ 两阶段分类器 - 训练与评估
+ Stage 1: Embedding (Top-2) + Stage 2: Reranker (Top-1)
+======================================================================
+数据文件: /home/zzh/webpage-classification/data/labeled/labeled.jsonl
+训练样本: 6000 条
+测试样本: 800 条
+Top-K: 2
+Doc版本: v2 (简洁字符串)
+加载路径: /home/zzh/webpage-classification/models/hard_negative_train6000.pt
+======================================================================
+
+[1/5] 加载数据...
+  总计: 6888 条
+  训练集: 6000 条
+  测试集: 800 条
+
+[2/5] 初始化分类器...
+============================================================
+ 两阶段分类器初始化
+============================================================
+
+[Stage 1] 加载 Embedding 模型...
+正在加载模型: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+设备: cuda, 数据类型: torch.bfloat16
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 127.31it/s]
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/torch/cuda/__init__.py:283: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  warnings.warn(
+正在计算类别模板嵌入...
+已初始化 8 个类别的嵌入
+模型加载完成!
+
+[Stage 2] 加载 Reranker 模型...
+  使用默认注意力机制
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 126.79it/s]
+  Reranker 加载完成: /home/zzh/webpage-classification/models/Qwen3-VL-Reranker-8B
+
+============================================================
+ 初始化完成
+============================================================
+
+[3/5] 加载已训练的类别嵌入...
+类别嵌入已加载: /home/zzh/webpage-classification/models/hard_negative_train6000.pt
+  类别数: 8
+  向量维度: 4096
+
+[4/5] 测试...
+
+  ============================================================
+  两阶段分类 (共 800 条)
+  ============================================================
+You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/transformers/tokenization_utils_base.py:2919: UserWarning: `max_length` is ignored when `padding`=`True` and there is no truncation strategy. To pad to max length, use `padding='max_length'`.
+  warnings.warn(
+  [5959] 稳外贸“拓朋友圈”，“优等生”浙江如何乘风破浪？           
+         Top2: [经济, 时政] → 时政 (0.06)
+  [5960] 立足禀赋 创新打法：浙江县域高质量发展何以开新局？          
+         Top2: [科技, 经济] → 科技 (0.02)
+  [5961] Hakim Kasus Chromebook Sebut Ada Or
+         Top2: [科技, 时政] → 科技 (0.02)
+  [5962] Guru SD Negeri di Tangsel Diduga Le
+         Top2: [社会, 时政] → 社会 (0.07)
+  [5963] BI: Juda Agung Ajukan Pengunduran D
+         Top2: [经济, 时政] → 经济 (0.06)
+  [5964] Pejabat KSP Pernah Tanyakan Aturan 
+         Top2: [时政, 科技] → 时政 (0.03)
+  [5965] Sosok Yoga Naufal, Penumpang Pesawa
+         Top2: [社会, 其他] → 社会 (0.09)
+  [5966] Pengacara Nadiem Sebut Saksi Sidang
+         Top2: [时政, 社会] → 社会 (0.05)
+  [5967] Dari Inggris, Prabowo Pimpin Ratas 
+         Top2: [时政, 社会] → 时政 (0.07)
+  [5968] Kantor Lurah Pondok Jaya Tangsel Di
+         Top2: [社会, 时政] → 社会 (0.07)
+  --- 进度: 10/800 ---
+  [5969] Hujan Deras, Jalan Raya Penghubung 
+         Top2: [社会, 其他] → 社会 (0.06)
+  [5970] 黃心穎積極追夢 型格西裝打扮出騷自彈自唱               
+         Top2: [娱乐, 社会] → 娱乐 (0.18)
+  [5971] 巴基斯坦商場大火燒24小時終撲滅 增至11死 60人失蹤       
+         Top2: [社会, 时政] → 社会 (0.07)
+  [5972] 向氏家族向華炎世界殯儀館設靈 O記反黑逾百警戒備           
+         Top2: [娱乐, 社会] → 社会 (0.07)
+  [5973] 倫敦街頭試用「天眼」助破案 3個月捉100疑犯            
+         Top2: [社会, 时政] → 社会 (0.07)
+  [5974] 麥長青搞餐廳預埋Hey Brother 李思捷唔介意同其他電視台合作 
+         Top2: [娱乐, 社会] → 娱乐 (0.17)
+  [5975] 原來視咁的丨《非常檢控觀》100%還原 重塑現代包青天        
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [5976] 證券總會建議IPO提高散戶配發比例 豁免低流動股票印花稅 設集體訴訟制
+         Top2: [经济, 时政] → 经济 (0.08)
+  [5977] 法律年度開啟典禮︱毛樂禮：司法獨立對繁榮穩定至關重要 公義必須彰顯且被
+         Top2: [时政, 社会] → 社会 (0.03)
+  [5978] Beyond Taiwan’s auspicious economic
+         Top2: [经济, 时政] → 经济 (0.05)
+  --- 进度: 20/800 ---
+  [5979] Iran’s protests don’t fit the Lefti
+         Top2: [时政, 军事] → 军事 (0.01)
+  [5980] AI is irresistible to Britain’s wor
+         Top2: [科技, 经济] → 科技 (0.04)
+  [5981] We saved our local pub from being t
+         Top2: [社会, 其他] → 社会 (0.03)
+  [5982] One year of the new Team Trump — wh
+         Top2: [时政, 社会] → 时政 (0.02)
+  [5983] Starmer is fast running out of parl
+         Top2: [时政, 社会] → 时政 (0.03)
+  [5984] Trump treats America’s en ies bette
+         Top2: [时政, 军事] → 军事 (0.02)
+  [5985] It’s time to start mansplaining aga
+         Top2: [社会, 时政] → 社会 (0.02)
+  [5986] Reeves’s ‘tax timebomb’ threatens t
+         Top2: [经济, 时政] → 经济 (0.02)
+  [5987] KenKen No 6733 | Puzzles | The Time
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5988] Chess Winning Move | Puzzles | The 
+         Top2: [其他, 体育] → 其他 (0.01)
+  --- 进度: 30/800 ---
+  [5989] Set Square No 4243 | Puzzles | The 
+         Top2: [其他, 社会] → 其他 (0.01)
+  [5990] Concise Quintagram No 2468 | Puzzle
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5991] Extra Futoshiki No 1205 | Puzzles |
+         Top2: [其他, 社会] → 其他 (0.01)
+  [5992] Cryptic Quintagram No 2468 | Puzzle
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5993] Futoshiki No 5281 | Puzzles | The T
+         Top2: [其他, 社会] → 其他 (0.01)
+  [5994] Kakuro No 4240 | Puzzles | The Time
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5995] 獨家：格陵蘭島的前世今生——從冰雪荒原到大國博弈的戰略要衝      
+         Top2: [时政, 军事] → 军事 (0.02)
+  [5996] 從委內瑞拉到伊朗：川普帝國夢與中共戰略慘敗的黑暗真相         
+         Top2: [时政, 军事] → 时政 (0.02)
+  [5997] خىتاي بىلەن تىركىشىپ، يولدىشىنىڭ ئە
+         Top2: [社会, 时政] → 社会 (0.09)
+  [5998] ئامېرىكا پارلامېنتى تەرىپىدىن ماقۇل
+         Top2: [时政, 社会] → 时政 (0.05)
+  --- 进度: 40/800 ---
+  [5999] خىتاينىڭ ئۇيغۇرلارغا قاراتقان باستۇ
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6000] خىتاينىڭ ئۇيغۇرلارغا قاراتقان باستۇ
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6001] «ھاياتتىن سورا» ناملىق روماندىن ئار
+         Top2: [其他, 社会] → 社会 (0.03)
+  [6002] «ھاياتتىن سورا» ناملىق روماندىن ئار
+         Top2: [其他, 社会] → 社会 (0.03)
+  [6003] Le Pr ier ministre choisit l'utilis
+         Top2: [时政, 社会] → 时政 (0.02)
+  [6004] Les secours appelés au siège de Roc
+         Top2: [科技, 娱乐] → 娱乐 (0.06)
+  [6005] Jean-Noël Barrot: "Personne ne sort
+         Top2: [时政, 经济] → 经济 (0.03)
+  [6006] INFO BFMTV. Sébastien Lecornu passe
+         Top2: [时政, 经济] → 时政 (0.05)
+  [6007] Jean-Noël Barrot : "Non, l'Europe n
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6008] DIRECT. Le Conseil de défense sur l
+         Top2: [时政, 社会] → 时政 (0.06)
+  --- 进度: 50/800 ---
+  [6009] Accident ferroviaire en Espagne: "3
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6010] 2027 Tour de France: Full route of 
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6011] Veterans can be recalled for servic
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6012] Aria Thorpe: Nine-year-old girl die
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6013] Most anticipated video games coming
+         Top2: [科技, 娱乐] → 娱乐 (0.03)
+  [6014] Black cab rapist John Worboys to fa
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6015] T20 World Cup: England cricket star
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6016] US to suspend immigrant visa proces
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6017] 'Major risk' to global economy from
+         Top2: [经济, 时政] → 经济 (0.07)
+  [6018] Trump’s Letter to Norway Should Be 
+         Top2: [时政, 军事] → 时政 (0.04)
+  --- 进度: 60/800 ---
+  [6019] 2026-01-19T00:37:05+08:00          
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6020] 2026-01-18T23:59:00+08:00          
+         Top2: [社会, 其他] → 社会 (0.03)
+  [6021] 2026-01-18T23:10:05+08:00          
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6022] 2026-01-18T23:07:58+08:00          
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [6023] Is Starlink Authoritarian-Proof?   
+         Top2: [科技, 时政] → 科技 (0.04)
+  [6024] Happy 2026! Our team is starting th
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6025] Recapping the Inaugural Cohort of t
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6026] One Quarter of U.S. Homes are Value
+         Top2: [经济, 社会] → 经济 (0.05)
+  [6027] A Guide to Trump’s Second-Term Mili
+         Top2: [军事, 时政] → 军事 (0.09)
+  [6028] Granting Undocumented Students Acce
+         Top2: [时政, 社会] → 社会 (0.04)
+  --- 进度: 70/800 ---
+  [6029] The Digital Divide Reimagined: AI, 
+         Top2: [科技, 时政] → 科技 (0.02)
+  [6030] 园艺物品交易 - 新足迹 - Powered by Discuz!  
+         Top2: [其他, 社会] → 其他 (0.03)
+  [6031] Швейцария позовет Россию на конфере
+         Top2: [科技, 时政] → 时政 (0.04)
+  [6032] WSJ: приглашение войти в "Совет мир
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6033] ЦБ выпустит модернизированные банкн
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6034] Эксперты рассказали об условиях для
+         Top2: [经济, 社会] → 经济 (0.07)
+  [6035] "Газпром" и венгерская MOL согласов
+         Top2: [经济, 时政] → 经济 (0.07)
+  [6036] Испания объявит трехдневный траур п
+         Top2: [社会, 时政] → 社会 (0.14)
+  [6037] Начальнику центра МВД в Коми предъя
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6038] Долина и ее внучка выписались из кв
+         Top2: [娱乐, 社会] → 娱乐 (0.13)
+  --- 进度: 80/800 ---
+  [6039] Habeba Omar                        
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6040] Vietnam's 14th National Party Congr
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6041] Smartmi 3 - máy lọc không khí có kh
+         Top2: [科技, 其他] → 其他 (0.07)
+  [6042] IELTS should not be the goal: Engli
+         Top2: [社会, 其他] → 社会 (0.03)
+  [6043] Smartphone thiết kế giống iPhone 17
+         Top2: [科技, 其他] → 科技 (0.04)
+  [6044] We cannot live in fear of what we e
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6045] Laptop gaming giá 100 triệu đồng, c
+         Top2: [科技, 其他] → 科技 (0.02)
+  [6046] Hanoi deploys plan to ensure absolu
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6047] When it costs less to disregard foo
+         Top2: [社会, 经济] → 社会 (0.03)
+  [6048] 以伊冲突第11日 福尔多核设施是否被摧毁？伊方：“游戏并未结束”   
+         Top2: [时政, 军事] → 军事 (0.08)
+  --- 进度: 90/800 ---
+  [6049] 青海西宁疫情防控措施升级                       
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6050] 【乡村振兴看一线】青海海东：千亩“仙女果”实现经济效益与生态效益双赢 
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6051] 2026经济工作怎么干？专家解读中央经济工作会议           
+         Top2: [经济, 时政] → 时政 (0.06)
+  [6052] 河南新蔡通报一名学生意外死亡：排除刑事案件              
+         Top2: [社会, 时政] → 社会 (0.10)
+  [6053] 海事局辦再生水講解會                         
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6054] 加州億萬富翁稅引發避稅潮　 Google創辦人悄然重組資產版圖 - 澳
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6055] 傳長和擬分拆屈臣氏上市 已選定瑞銀高盛負責推進 - 澳門力報官網   
+         Top2: [经济, 科技] → 经济 (0.10)
+  [6056] 湖南農莊「豬食槽」火鍋爆火　 食客爆滿需提前四五天預訂 - 澳門力報官
+         Top2: [社会, 其他] → 其他 (0.07)
+  [6057] ​WTT杜哈冠軍賽 朱雨玲獲女單冠軍 - 澳門力報官網        
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6058] 下一代Kimi將引入新注意力機制　 月之暗面：長期規劃推進至K100 
+         Top2: [科技, 经济] → 科技 (0.07)
+  --- 进度: 100/800 ---
+  [6059] 澳大45周年校慶啟動 開放日展示多元校園文化 - 澳門力報官網    
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6060] ​金沙中國將派一個月糧績效獎金 3月起加薪 料99%員工受惠 - 澳門
+         Top2: [经济, 社会] → 社会 (0.08)
+  [6061] 2,000億美元買債救房市？ 市場質疑特朗普方案成效 - 澳門力報官網
+         Top2: [经济, 时政] → 经济 (0.08)
+  [6062] Taoyuan taxi fares to rise NT$50-10
+         Top2: [社会, 经济] → 社会 (0.11)
+  [6063] NBA Rising Stars Invitational to ho
+         Top2: [体育, 娱乐] → 体育 (0.08)
+  [6064] Taiwan to allow travelers to ing in
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6065] PMI Kaohsiung dilaporkan polisi ata
+         Top2: [社会, 时政] → 社会 (0.09)
+  [6066] PMI Kaohsiung dilaporkan polisi ata
+         Top2: [社会, 时政] → 社会 (0.09)
+  [6067] Los peruanos buscan un presidente “
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6068] Estas son las cortitas de hoy lunes
+         Top2: [时政, 社会] → 社会 (0.03)
+  --- 进度: 110/800 ---
+  [6069] ENCUESTA IPSOS: Reggiardo y Bruce e
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6070] Video revela segunda visita no ofic
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6071] Gobierno reglamenta ley que endurec
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6072] PJ da la razón a Perú21 sobre deman
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6073] Presidente José Jerí anunció que ap
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6074] JNE: Estas son las 23 alianzas para
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6075] JNJ citó a Delia Espinoza por no re
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6076] José Jerí pide disculpas por reunió
+         Top2: [时政, 社会] → 社会 (0.07)
+  [6077] 'Jailed for Hindutva': How Gauri La
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6078] Should Supreme Court “Read Up” a La
+         Top2: [时政, 社会] → 社会 (0.03)
+  --- 进度: 120/800 ---
+  [6079] Bollywood Turning Cold on AR Rahman
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [6080] ‘Hawker Jihad’ to ‘Doodh Jihad’: Th
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6081] Sharad Pawar: The Kingmaker & Maste
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6082] BMC Breakthrough: How Fadnavis Deli
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6083] Meet 6 Non-Muslims from Owaisi's AI
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6084] Maharashtra Civic Polls: Congress L
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6085] 10 Years Later, Rohith Vemula’s Fig
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6086] A comparative analysis of Indonesia
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6087] Tàu tuần tra của lực lượng bảo vệ b
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6088] Nghị quyết số 66 là 'lời hiệu triệu
+         Top2: [时政, 社会] → 时政 (0.08)
+  --- 进度: 130/800 ---
+  [6089] Văn kiện trình Đại hội 14 hội tụ ý 
+         Top2: [时政, 社会] → 时政 (0.08)
+  [6090] Bộ trưởng Công an: Xây dựng xã hội 
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6091] Lãnh đạo Đảng, Nhà nước và đại biểu
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6092] Tổng Bí thư và hơn 1.500 đại biểu d
+         Top2: [时政, 社会] → 时政 (0.09)
+  [6093] Đại hội 14 mặc niệm tưởng nhớ cố Tổ
+         Top2: [时政, 社会] → 时政 (0.08)
+  [6094] Giới thiệu 3 nữ ủy viên Trung ương 
+         Top2: [时政, 社会] → 时政 (0.06)
+  [6095] Đoàn phóng viên quốc tế đến Việt Na
+         Top2: [时政, 社会] → 时政 (0.08)
+  [6096] Sức bật mạnh mẽ của An Giang để đạt
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6097] 探索转型发展之路，柬埔寨西哈努克市对标中国深圳澳门          
+         Top2: [时政, 经济] → 经济 (0.04)
+  [6098] Economia globală rezistă șocurilor 
+         Top2: [经济, 时政] → 经济 (0.06)
+  --- 进度: 140/800 ---
+  [6099] Copil de 12 ani la volanul unei maș
+         Top2: [社会, 其他] → 社会 (0.07)
+  [6100] Viața cu depresie: cum se simte „di
+         Top2: [其他, 社会] → 社会 (0.02)
+  [6101] Olguţa Vasilescu îl acuză pe Boloja
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6102] PMB, gură de oxigen pentru achitare
+         Top2: [社会, 经济] → 社会 (0.05)
+  [6103] România, plină de gropi după ninsor
+         Top2: [社会, 其他] → 社会 (0.06)
+  [6104] Jaqueline Cristian s-a predat în pr
+         Top2: [体育, 娱乐] → 体育 (0.07)
+  [6105] Noi reguli la vânzarea mașinii. Cin
+         Top2: [经济, 社会] → 经济 (0.04)
+  [6106] FBI se alătură căutării lui Emil Gâ
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6107] Cel puțin 5000 de iranieni au murit
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6108] 深合區收益共享機制還未立                       
+         Top2: [经济, 时政] → 时政 (0.04)
+  --- 进度: 150/800 ---
+  [6109] 賽狗場迎拆卸　首區二九年四月竣工                   
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6110] 新法舊法都不容旅行社向屋苑提供穿梭巴士服務              
+         Top2: [社会, 经济] → 社会 (0.06)
+  [6111] 二零二四年獲減撥款一億五千萬                     
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6112] 政府下調公共充電收費                         
+         Top2: [社会, 经济] → 社会 (0.07)
+  [6113] 政府增派公務員赴琴工作                        
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6114] 內地春運為期40日首日火車票今開售                  
+         Top2: [社会, 经济] → 社会 (0.08)
+  [6115] 內蒙古工廠爆炸事故　當局繼續搜救失蹤者                
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6116] 內地發出寒潮、冰凍、暴雪三項預警                   
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6117] 內地調查揭品牌商「收買」AI暗植廣告                 
+         Top2: [科技, 经济] → 科技 (0.05)
+  [6118] 神二十飛船返回艙成功返回東風著陸場                  
+         Top2: [时政, 科技] → 科技 (0.05)
+  --- 进度: 160/800 ---
+  [6119] 神二十飛船以無人狀態返回地球　當局指外觀總體正常           
+         Top2: [时政, 科技] → 科技 (0.03)
+  [6120] 海南封關滿一個月　當局：平穩開局、成效初顯              
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6121] 習近平︰中加兩國要加強溝通和協調　共同應對全球性挑戰         
+         Top2: [时政, 军事] → 时政 (0.12)
+  [6122] 「冬日經濟」因地制宜　各地不同政策措施　推進發展           
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6123] 國家主席習近平會見加拿大總理卡尼                   
+         Top2: [时政, 社会] → 时政 (0.08)
+  [6124] Commission d’enquête sur l’audiovis
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [6125]                                    
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [6126] «L’amour est dans le pré» : qui son
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [6127] Ancien tennisman soupçonné de trich
+         Top2: [娱乐, 体育] → 娱乐 (0.08)
+  [6128] On a regardé pour vous «Bonjour ! A
+         Top2: [娱乐, 其他] → 娱乐 (0.05)
+  --- 进度: 170/800 ---
+  [6129] Hommage aux victimes de Crans Monta
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [6130] «Des kilos de cocaïne commandés par
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6131] Bagarre à Rome : Gérard Depardieu e
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [6132] Баянгол дүүргийн Эрүүл мэндийн төвө
+         Top2: [社会, 其他] → 社会 (0.10)
+  [6133] Авлигын эсрэг сургалтад 238 албан х
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6134] E-Mongolia болон D-Gov.mn системээр
+         Top2: [时政, 科技] → 时政 (0.04)
+  [6135] Банк санхүүгийн салбарт учирсан 140
+         Top2: [经济, 社会] → 经济 (0.05)
+  [6136] “Эрх бүхий албан тушаалтны нэгдсэн 
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6137] ШИНЭ ҮЙЛЧИЛГЭЭ: ЗӨРЧЛИЙН ТОРГУУЛИЙН
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6138] 2025是美国外贸发生重大改变的一年                 
+         Top2: [经济, 时政] → 经济 (0.07)
+  --- 进度: 180/800 ---
+  [6139] 中国EV进入美国市场看来是迟早的事                  
+         Top2: [经济, 科技] → 经济 (0.04)
+  [6140] 杜如松（ Rush Doshi）：美国将舞台拱手让给中国       
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6141] 特朗普将如何“掌管”委内瑞拉？                    
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6142] 特朗普吞并格陵兰的野心和路线图                    
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6143] 特朗普总统的世界观和国际观                      
+         Top2: [时政, 军事] → 时政 (0.05)
+  [6144] 大模型在自动化测试的突破：蚂蚁、华为等头部企业应用实践        
+         Top2: [科技, 其他] → 科技 (0.03)
+  [6145] RDC : l’opposant Seth Kikuni s’exil
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6146] Deux personnes meurent foudroyées à
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6147] RDC-Grands Lacs : l’Union africaine
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6148] Accident à Masi-Manimba : le bilan 
+         Top2: [社会, 时政] → 社会 (0.06)
+  --- 进度: 190/800 ---
+  [6149] Ligue 1 : FC Les Aigles du Congo in
+         Top2: [体育, 社会] → 体育 (0.06)
+  [6150] Ligue 1 : Ny bo, Bongeli et Mwaungu
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6151] Ligue 1 : Lupopo en mode rouleau co
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6152] Uvira : pillages et climat de chaos
+         Top2: [社会, 军事] → 社会 (0.05)
+  [6153] Kasaï : 7 morts et 6 blessés graves
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6154] 13 schoolchildren killed in tragic 
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6155] Sudan: Business steadily returns to
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6156] Kenya’s Boda Girls ride to save liv
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6157] Government parties get all parliame
+         Top2: [时政, 社会] → 时政 (0.07)
+  [6158] South Africa declares national disa
+         Top2: [社会, 时政] → 社会 (0.05)
+  --- 进度: 200/800 ---
+  [6159] Gaza peace plans tops agenda as Egy
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6160] Senegal stun Morocco in AFCON 2025 
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6161] Flooding forces evacuations at Krug
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6162] 以十五运会为新起点 推动构建体育助力粤港澳大湾区融合发展新格局    
+         Top2: [体育, 时政] → 时政 (0.03)
+  [6163] 全运盛会谱写融合新篇 体育荣光照耀湾区梦想              
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6164] 十五运会老兵登场，热爱可抵漫长岁月                  
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6165] 全运会史上首个跨境马拉松开赛！深港携手演绎“速度与融合”       
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6166] 全运会龙腾狮舞 舞出大湾区同心圆                   
+         Top2: [体育, 社会] → 社会 (0.02)
+  [6167] 全运会乒乓球女单八分之一决赛：孙颖莎晋级八强             
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6168] 全民全运大湾区 同心同圆中国梦                    
+         Top2: [体育, 社会] → 体育 (0.03)
+  --- 进度: 210/800 ---
+  [6169] “The Glass Wall”: How Israel Turned
+         Top2: [军事, 时政] → 军事 (0.01)
+  [6170] Ramallah’s Deafening Silence Ignore
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6171] The Massive Human Rights Inversion:
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6172] Netanyahu’s Secret Plea to Trump to
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6173] The 2025 Recognition of Palestine: 
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6174] Iran’s Regime Is Not Merely Under P
+         Top2: [时政, 军事] → 军事 (0.01)
+  [6175] The Implications of the U.S. Operat
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6176] End of the State of War with Syria?
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6177] Why Lebanon Has Become Syria’s Most
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6178] 青海海东“以快制险 以准保人”应对汛情“大考”            
+         Top2: [社会, 时政] → 社会 (0.05)
+  --- 进度: 220/800 ---
+  [6179] 邪教“全能神”正在利用人工智能向以色列进行网络渗透          
+         Top2: [社会, 科技] → 科技 (0.03)
+  [6180] 危险的全球性误导：美宗教专家剖析“全能神”为何绝非基督教       
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6181] 从受骗离家到重返生活：越南老街省警方瓦解“全能神”邪教网络      
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6182] US: Trump administration condemns p
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6183] Now, Greenland will be free of Russ
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6184] Top European leaders vow to uphold 
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6185] 3rd India-Kenya Defence Exhibition 
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6186] Davos under lockdown as World Econo
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6187] WEF sparks backlash by inviting Ira
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6188] "I will return to Iran": Iran's exi
+         Top2: [时政, 军事] → 时政 (0.02)
+  --- 进度: 230/800 ---
+  [6189] India's shared geometric art with I
+         Top2: [娱乐, 时政] → 娱乐 (0.05)
+  [6190] Taiwan detects two PLA aircraft sor
+         Top2: [军事, 时政] → 军事 (0.10)
+  [6191] Sudirman Said Soal Mafia Migas: Ayo
+         Top2: [时政, 经济] → 时政 (0.03)
+  [6192] Usai Netanyahu, Giliran Smotrich 'P
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6193] Satu Warga Jakarta Meninggal Dunia 
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6194] Mengapa Jakarta Masih Banjir Meski 
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6195] Usai Netanyahu, Giliran Smotrich 'P
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6196] Integrasi Data Lintas Sektor Pentin
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6197] SITUBA, T an Digital Baru Bagi Pasi
+         Top2: [科技, 社会] → 社会 (0.06)
+  [6198] PBSI Bidik Minimal Satu Gelar di In
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  --- 进度: 240/800 ---
+  [6199] 加拿大总理卡尼“新世界秩序”言论引争论(图)             
+         Top2: [时政, 军事] → 时政 (0.04)
+  [6200] 随着台海紧张局势持续升温，围绕“如果中国对台动武失败会发生什么”的讨论
+         Top2: [时政, 军事] → 军事 (0.05)
+  [6201] 恐怖！深圳接连发生救护车当街绑架女生事件(图)            
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6202] 内蒙古包钢厂区发生大爆炸 致2死8失聯84伤(图)          
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6203] 遍及自然与住家 小精灵的传说与目击事件(图)             
+         Top2: [其他, 社会] → 其他 (0.04)
+  [6204] 马杜罗被抓 中国人为何像过年一样高兴？(组图)            
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6205] 千古悬案——杨贵妃下落之谜（三）(图)                
+         Top2: [社会, 其他] → 社会 (0.01)
+  [6206] 伊朗再威胁美国 中共能源与“面子”双承压(图)            
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6207] 伊朗疑用化学武器血腥镇压 库德族地区重创震惊国际(图)        
+         Top2: [时政, 军事] → 军事 (0.05)
+  [6208] Dronebeelden tonen ravage na treinb
+         Top2: [社会, 时政] → 社会 (0.09)
+  --- 进度: 250/800 ---
+  [6209] Al 39 doden geteld na botsing van t
+         Top2: [社会, 时政] → 社会 (0.10)
+  [6210] Zeker 24 doden bij botsing van twee
+         Top2: [社会, 时政] → 社会 (0.10)
+  [6211] Onrustige nacht in Antwerpen en Bru
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6212] Onrustige nacht in Antwerpen en Bru
+         Top2: [社会, 体育] → 社会 (0.03)
+  [6213] Standard kan niet profiteren van An
+         Top2: [体育, 其他] → 体育 (0.05)
+  [6214] Antwerp loopt blauwtje bij rode lan
+         Top2: [体育, 其他] → 体育 (0.05)
+  [6215] AA Gent walst in het slot over Ande
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6216] AA Gent gaat op en over Anderlecht 
+         Top2: [体育, 社会] → 体育 (0.06)
+  [6217] Union weer steviger aan de leiding 
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6218] Greenland Today, Svalbard Tomorrow?
+         Top2: [时政, 军事] → 军事 (0.02)
+  --- 进度: 260/800 ---
+  [6219] What's New Podcast - Canada's Arcti
+         Top2: [时政, 军事] → 军事 (0.01)
+  [6220] Charting New Waters: China's Role i
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6221] Trump & Greenland: Is There Logic i
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6222] Трамп позвал Путина в «Совет мира» 
+         Top2: [时政, 军事] → 时政 (0.06)
+  [6223] Красота и ее жертвы - Газета Труд  
+         Top2: [娱乐, 体育] → 娱乐 (0.08)
+  [6224] Последняя колонка - Газета Труд    
+         Top2: [社会, 其他] → 社会 (0.08)
+  [6225] Налог на туман и запах тайги еще не
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6226] Елочный круговорот: не в контейнер,
+         Top2: [其他, 社会] → 社会 (0.06)
+  [6227] Не просто куклы - Газета Труд      
+         Top2: [娱乐, 其他] → 娱乐 (0.09)
+  [6228] Трамп пригрозил пошлинами странам, 
+         Top2: [时政, 军事] → 军事 (0.04)
+  --- 进度: 270/800 ---
+  [6229] Будет народ, рассеянный по миру: Ти
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6230] Дискриминируют: МИД призвал россиян
+         Top2: [时政, 社会] → 社会 (0.08)
+  [6231] ¿Cuándo llega Pablo Vegetti?       
+         Top2: [体育, 其他] → 体育 (0.07)
+  [6232] Volvo consolida su liderazgo eléctr
+         Top2: [经济, 社会] → 经济 (0.02)
+  [6233] MIC reporta USD 531 millones en imp
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6234] Comuna autorizó intervenir una part
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6235] Rechazan tutela jurisdiccional para
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6236] Luque: Conductor imputado por muert
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6237] (影) 中国器官移植离奇绑架、死亡事件频发! “他”公开反对第二天就死
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6238] 川普为何一定要买格陵兰 美财长详解原因                
+         Top2: [时政, 军事] → 军事 (0.05)
+  --- 进度: 280/800 ---
+  [6239] 人生，有轮回；缘分，天注定                      
+         Top2: [其他, 娱乐] → 其他 (0.08)
+  [6240] 川普将金砖国家势力踢出美洲                      
+         Top2: [时政, 经济] → 时政 (0.02)
+  [6241] 中国情侣在黑珍珠餐厅拍照提这要求 服务生炸了…            
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6242] 打江山，坐金銮，睡女人，抢财产，防造反：一个王朝的闭环倒计时     
+         Top2: [时政, 其他] → 其他 (0.02)
+  [6243] 内蒙古工厂大爆炸 已2死66伤 5人失踪               
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6244] 杭州师范大学名单造假，官方公布调查结果                
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6245] 新生儿住院治疗黄疸时死亡，合肥市卫健委：相关涉事人员已停职接受调查  
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6246] 高市涉台挑衅言论引火烧身                       
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6247] 错误言论后果已现 搞事的高市错在哪？                 
+         Top2: [时政, 军事] → 时政 (0.04)
+  [6248] 各地强化就业服务 助力高校毕业生就业                 
+         Top2: [社会, 时政] → 社会 (0.03)
+  --- 进度: 290/800 ---
+  [6249] “Es un accidente muy difícil de exp
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6250] La llegada del “Ozempic chileno”: c
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6251] De Urresti (PS): “Es imprescindible
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6252] Eduardo Fuentes y María Luisa Godoy
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [6253] Daniel Mas salta desde la CPC a enc
+         Top2: [时政, 经济] → 经济 (0.05)
+  [6254] De la pantalla a las cuerdas: llega
+         Top2: [娱乐, 社会] → 娱乐 (0.10)
+  [6255] Los detalles de Centro Puntamar, el
+         Top2: [社会, 经济] → 社会 (0.05)
+  [6256] Precio del oro y la plata llegan a 
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6257] Kalashnikov repair teams service sm
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6258] Putin takes traditional icy plunge 
+         Top2: [时政, 军事] → 军事 (0.02)
+  --- 进度: 300/800 ---
+  [6259] Putin discusses Russia’s role in mu
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6260] No immediate plans for Putin’s call
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6261] Russian Il-114-300 aircraft to take
+         Top2: [军事, 时政] → 军事 (0.03)
+  [6262] Kr lin agrees that Trump will go do
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6263] Newest AK-12 assault rifle develope
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6264] Putin receives US invitation to joi
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6265] Rosoboronexport predicts 400% growt
+         Top2: [军事, 时政] → 军事 (0.06)
+  [6266] Rostec to present new Lightning mul
+         Top2: [军事, 时政] → 军事 (0.03)
+  [6267] 五月起市民可透过自助服务机查询个人社保供款资料            
+         Top2: [社会, 时政] → 社会 (0.15)
+  [6268] 一朝得大法人生不再迷茫                        
+         Top2: [其他, 社会] → 社会 (0.04)
+  --- 进度: 310/800 ---
+  [6269] The public is concerned about Trump
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6270] Fewer want the U.S. to take an acti
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6271] Crowdfunding contributions tend to 
+         Top2: [科技, 社会] → 社会 (0.04)
+  [6272] Affordability concerns are driving 
+         Top2: [经济, 社会] → 社会 (0.03)
+  [6273] Increased approval of Trump’s handl
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6274] Most see the federal shutdown as a 
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6275] About half of the public believe th
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6276] Pessimism about the direction of th
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6277] Half believe Israel’s military resp
+         Top2: [时政, 军事] → 军事 (0.07)
+  [6278] Čínská automobilová ofenzíva       
+         Top2: [经济, 科技] → 经济 (0.03)
+  --- 进度: 320/800 ---
+  [6279] Čína a svět tento týden: Technologi
+         Top2: [时政, 军事] → 军事 (0.01)
+  [6280] Mayor Brandon Johnson Announces New
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6281] CDPH Weekly Media Brief, 01/15/2026
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6282] Mayor Brandon Johnson Announces Lau
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6283] Mayor Brandon Johnson Welcomes Vice
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6284] Chicago Department Of Aviation To E
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6285] Mayor Brandon Johnson and CDPH Comm
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6286] Mayor Brandon Johnson Statement On 
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6287] Alert: Online Secondhand Bookstore 
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6288] Alert: Chinese authorities seek to 
+         Top2: [时政, 社会] → 社会 (0.03)
+  --- 进度: 330/800 ---
+  [6289] Tricentis投入智能体AI技术应对企业未测试代码风险      
+         Top2: [科技, 其他] → 科技 (0.05)
+  [6290] 网络威胁激增促使 IT 主管转向去中心化网络             
+         Top2: [科技, 经济] → 科技 (0.01)
+  [6291] 海南机场集团冬春航季计划保障航班超20万架次，累计通达城市达333个 
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6292] 海南航空计划8月26日起开通海口—莫斯科国际航线           
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6293] First Observation of Positronium Qu
+         Top2: [科技, 其他] → 科技 (0.02)
+  [6294] New Technique Predicts High-Temp Su
+         Top2: [科技, 经济] → 科技 (0.02)
+  [6295] 2026-01-19T14:24:33+00:00          
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6296] Miracle Insulator Coating Leaks: Re
+         Top2: [科技, 其他] → 其他 (0.03)
+  [6297] Mars Thunderstorms? Scientist Expla
+         Top2: [科技, 其他] → 其他 (0.02)
+  [6298] Saint Lucia's Human Rights Under UP
+         Top2: [时政, 社会] → 社会 (0.03)
+  --- 进度: 340/800 ---
+  [6299] FZJ, ESA Seek Participants for Sate
+         Top2: [科技, 时政] → 科技 (0.01)
+  [6300] उत्तर प्रदेश दिवस 2026: कानपुर सांस
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6301] बिल्हौर मवेशी अवशेष मामला: भाजपा वि
+         Top2: [时政, 社会] → 社会 (0.09)
+  [6302] वोटर लिस्ट अपडेट: राजस्थान, बंगाल स
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6303] दिल्ली-एनसीआर में मौसम का ट्रिपल अट
+         Top2: [社会, 其他] → 其他 (0.05)
+  [6304] भाजपा को मिलेगा सबसे युवा अध्यक्ष: 
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6305] ओडिशा के सुंदरगढ़ में भारी हिंसा: इ
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6306] चुनाव आयोग पर राहुल गांधी का बड़ा ह
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6307] देहरादून में छात्रा की मौत का मामला
+         Top2: [社会, 时政] → 社会 (0.11)
+  [6308] Violento asalto en Quilmes: cuatro 
+         Top2: [社会, 时政] → 社会 (0.06)
+  --- 进度: 350/800 ---
+  [6309] Para qué se usará el microsatélite 
+         Top2: [科技, 社会] → 科技 (0.05)
+  [6310] La fiesta de blanco de Pampita en e
+         Top2: [娱乐, 其他] → 娱乐 (0.09)
+  [6311] Las vacaciones de Michael Douglas, 
+         Top2: [娱乐, 其他] → 娱乐 (0.10)
+  [6312] Quién es quién en la pulseada por l
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6313] Reactivan un pedido de intervención
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6314] El inversor que anticipó la crisis 
+         Top2: [科技, 经济] → 经济 (0.04)
+  [6315] Choque de trenes en España: imágene
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6316] Video: la furia de Karina La Prince
+         Top2: [娱乐, 社会] → 娱乐 (0.11)
+  [6317] Миниатюрные электрокары калининград
+         Top2: [科技, 经济] → 科技 (0.04)
+  [6318] В России обрушились продажи электро
+         Top2: [经济, 科技] → 科技 (0.05)
+  --- 进度: 360/800 ---
+  [6319] Уязвимость российских «Голиафов» и 
+         Top2: [军事, 科技] → 军事 (0.09)
+  [6320] Германия придумала «значительный» о
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6321] В Германии рассказали о планах по в
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6322] В Кабуле произошел мощный взрыв    
+         Top2: [军事, 时政] → 军事 (0.02)
+  [6323] Стандартная полицейская проверка за
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6324] В Британии высказались о покупке Гр
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6325] Путин получил от США приглашение во
+         Top2: [时政, 军事] → 时政 (0.04)
+  [6326] అనుమానంతో భార్య గొంతు కోసి చంపిన భర
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6327] రాజీవ్ స్వగృహ ఓపెన్ ఫ్లాట్లకు వేలం 
+         Top2: [经济, 社会] → 社会 (0.05)
+  [6328] స్పీకర్‌పై బీజేపీ కోర్టు ధిక్కరణ కే
+         Top2: [时政, 社会] → 社会 (0.04)
+  --- 进度: 370/800 ---
+  [6329] మున్సిపల్ ఎన్నికలకు కాంగ్రెస్ ఇన్‌చ
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6330] Генпрокурор Кравченко та директор Д
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6331] "Схематоз" із СЗЧ. Чи дійсно в Укра
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6332] Сибіга: ОБСЄ на вимогу України обго
+         Top2: [军事, 时政] → 军事 (0.06)
+  [6333] Сім цивільних постраждали через рос
+         Top2: [军事, 社会] → 军事 (0.07)
+  [6334] Зеленський: Є інформація від розвід
+         Top2: [军事, 时政] → 军事 (0.10)
+  [6335] Росіяни вдарили дроном по будинку в
+         Top2: [军事, 社会] → 军事 (0.09)
+  [6336] У Дніпрі пролунала серія вибухів, м
+         Top2: [军事, 社会] → 军事 (0.10)
+  [6337] Мелоні заявила, що Венесуела звільн
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6338] UNPO Side Event in the Forum on Min
+         Top2: [时政, 社会] → 社会 (0.02)
+  --- 进度: 380/800 ---
+  [6339] Nueva ley elimina el enfoque de gén
+         Top2: [社会, 时政] → 时政 (0.03)
+  [6340] Escolaridad sin niños              
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6341] Milo J confirma concierto en Perú c
+         Top2: [娱乐, 社会] → 娱乐 (0.11)
+  [6342] La OMS clasificó las carnes procesa
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6343] San Juan de Lurigancho: Policía rec
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6344] ¿Dónde ver Real Madrid — Mónaco EN 
+         Top2: [体育, 娱乐] → 体育 (0.06)
+  [6345] Acad ia IPD Verano 2026 fue inaugur
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6346] Conciertos en Lima 2026: lista de e
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [6347] Irán: Hackean la televisión estatal
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6348] ATV confirma el regreso de ‘Magaly 
+         Top2: [娱乐, 社会] → 娱乐 (0.13)
+  --- 进度: 390/800 ---
+  [6349] Inflation ticked up to 2.4% in Dece
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6350] The World Economic Forum is meeting
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6351] Trump’s Greenland tariff threat, tr
+         Top2: [时政, 经济] → 经济 (0.04)
+  [6352] Spain train crash kills dozens with
+         Top2: [社会, 时政] → 社会 (0.09)
+  [6353] Wildfires raging across Chile kill 
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6354] Carney agrees ‘in principle’ to Tru
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6355] Ontario SIU probes Oshawa shooting 
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6356] Qatar to invest in Canada’s major b
+         Top2: [时政, 经济] → 时政 (0.05)
+  [6357] “Unacceptable’: Allies react to Tru
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6358] Canada launches compensation progra
+         Top2: [时政, 社会] → 社会 (0.04)
+  --- 进度: 400/800 ---
+  [6359] 高級關員疫情時虛報在家候命騙薪　罪成囚10星期及賠償10.4萬元　不服
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6360] 電車司機撞斃衝紅燈女童　被裁定不小心駕駛罪成判囚4周　司機不服定罪及判
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6361] 申請高才通涉虛報學歷　雙程證男缺席聆訊　案件押後1.26再提堂　法庭沒
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6362] 電車司機撞斃衝紅燈女童　被裁定不小心駕駛罪成判囚4周　司機不服定罪及判
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6363] 高級關員疫情時虛報在家候命騙薪　罪成囚10星期及賠償10.4萬元　不服
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6364] 高級關員疫情時虛報在家候命騙薪　罪成囚10星期及賠償10.4萬元　不服
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6365] 申請高才通涉虛報學歷　雙程證男缺席聆訊　案件押後1.26再提堂　法庭沒
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6366] 申請高才通涉虛報學歷　雙程證男缺席聆訊　案件押後1.26再提堂　法庭沒
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6367] 蘋果國安案 求情｜市民「姨婆」提早78小時排隊　「來到排第一，終於放心
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6368] New funding for CoolS to cut chip h
+         Top2: [科技, 经济] → 经济 (0.04)
+  --- 进度: 410/800 ---
+  [6369] Trade-bazooka: How EU retaliation c
+         Top2: [科技, 经济] → 经济 (0.04)
+  [6370] Artific is the AI Company of the Ye
+         Top2: [科技, 其他] → 科技 (0.08)
+  [6371] Shifting power: China’s scientific 
+         Top2: [科技, 时政] → 科技 (0.02)
+  [6372] Global risks are rising, and the fu
+         Top2: [经济, 时政] → 经济 (0.02)
+  [6373] If they patent here, why don’t you 
+         Top2: [科技, 经济] → 科技 (0.02)
+  [6374] When AI outruns the microchip: imec
+         Top2: [科技, 经济] → 科技 (0.04)
+  [6375] The challenge: indestructible wind 
+         Top2: [科技, 其他] → 科技 (0.02)
+  [6376] 米兰租房价格触顶回落：后疫情时代首次下跌，住房成本仍处高位 - 奋斗在
+         Top2: [经济, 社会] → 社会 (0.05)
+  [6377] 为何超市购物越来越贵？四年来意大利的“购物车”价格上涨22.3% - 
+         Top2: [经济, 时政] → 经济 (0.07)
+  [6378] ​“触碰胸部下方不构成性骚扰？”意大利比耶拉检方决定引发争议 - 奋斗
+         Top2: [社会, 时政] → 社会 (0.05)
+  --- 进度: 420/800 ---
+  [6379] 意大利校园饮用瓶装水后突发不适，四名学生送医调查 - 奋斗在意大利  
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6380] 米兰成“百万富翁之都”：每12名居民中就有一位百万资产者 密度全球榜首
+         Top2: [经济, 社会] → 经济 (0.06)
+  [6381] 又一流浪汉冻死在米兰街头 2026年已现三例 - 奋斗在意大利    
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6382] 荷蘭從格陵蘭島撤回2名軍官                      
+         Top2: [时政, 军事] → 军事 (0.11)
+  [6383] 兩旅客攜未完稅香煙入境香港 分別判囚4個月和2個月          
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6384] 【娛樂】李龍基被爆「未離婚、無心娶王青霞」 憤怒回應         
+         Top2: [娱乐, 社会] → 娱乐 (0.14)
+  [6385] 消防處即日起巡查1987年或之前入則住宅 目標1500幢樓宇     
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6386] 更新 | 包鋼板材廠事故已致5死5失聯                
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6387] 有片丨前海開發開放再提速 深港融合結碩果               
+         Top2: [经济, 时政] → 时政 (0.03)
+  [6388] 廣州兩會┃眾多數據亮眼 廣州經濟回穩加快發展             
+         Top2: [经济, 时政] → 经济 (0.08)
+  --- 进度: 430/800 ---
+  [6389] 宁波妇儿医院：两极化无助于解决问题                  
+         Top2: [社会, 其他] → 社会 (0.10)
+  [6390] 急诊夜晚不换药，浙江大三甲被投诉，主任愤怒谴责：绷带松脱，一个普通换药
+         Top2: [社会, 其他] → 社会 (0.13)
+  [6391] 一个日本人被邀请参加九三大阅兵，他凭什么？              
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6392] 作为光伏从业者，我来说说行业反“内卷”中的利益冲突          
+         Top2: [经济, 科技] → 经济 (0.03)
+  [6393] 稳定币：锚定未来？                          
+         Top2: [经济, 科技] → 经济 (0.04)
+  [6394] 稳定币热潮背后，有何暗流？                      
+         Top2: [科技, 经济] → 经济 (0.03)
+  [6395] 加强民间交流是重启中日关系的长效药 | 日本华侨报网 《日本华侨报》—
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6396] KOROT JA VALUUTAT: Lainojen hinnat 
+         Top2: [经济, 社会] → 经济 (0.05)
+  [6397] Voiko Stubb kuiskuttaa Trumpin korv
+         Top2: [时政, 经济] → 时政 (0.03)
+  [6398] Helsingin pörssiin listattu Dovre G
+         Top2: [经济, 社会] → 经济 (0.08)
+  --- 进度: 440/800 ---
+  [6399] Tulleista yllättävä positiivinen va
+         Top2: [经济, 时政] → 经济 (0.08)
+  [6400] Rakennusyhtiö SRV nosti ohjeistusta
+         Top2: [经济, 科技] → 经济 (0.10)
+  [6401] KL tapasi d okraattipomon, joka hau
+         Top2: [时政, 经济] → 经济 (0.03)
+  [6402] Merja Mähkä: Sijoittamisessa voi ol
+         Top2: [经济, 其他] → 经济 (0.07)
+  [6403] Pörssisähköön luvassa hintapomppu  
+         Top2: [经济, 社会] → 经济 (0.08)
+  [6404] Osak arkkinoiden pelkokerroin ampai
+         Top2: [经济, 社会] → 经济 (0.07)
+  [6405] Häkämies tarjoaa isoa ”game changer
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6406] 贯彻落实党的二十届四中全会和中央经济工作会议精神 深入推进数字中国建设
+         Top2: [科技, 时政] → 时政 (0.10)
+  [6407] 全国粮食和物资储备工作会议在京召开                  
+         Top2: [时政, 经济] → 时政 (0.09)
+  [6408] 深入贯彻党的二十届四中全会和中央经济工作会议精神 推动“十五五”发展改
+         Top2: [时政, 经济] → 时政 (0.10)
+  --- 进度: 450/800 ---
+  [6409] 青海：西宁市“实体+线上”双轮驱动建设“一区一特色”适老化展厅    
+         Top2: [科技, 社会] → 社会 (0.06)
+  [6410] 深入学习贯彻中央经济工作会议精神 扎实推动党中央决策部署落地落实   
+         Top2: [经济, 时政] → 时政 (0.10)
+  [6411] India Rejects 1963 China-Pakistan P
+         Top2: [时政, 军事] → 军事 (0.07)
+  [6412] Elon Musk’s Starlink Offers Free In
+         Top2: [科技, 经济] → 科技 (0.04)
+  [6413] As Arctic warms up, race to control
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6414] BMC Elections 2026: Amrita Fadnavis
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6415] BMC Elections 2026: BJP’s Flag Flie
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6416] Breaking News: Massive Fire Breaks 
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6417] Breaking News: Varanasi Police Bust
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6418] Breaking: Shivraj Singh Chouhan Acc
+         Top2: [时政, 社会] → 时政 (0.02)
+  --- 进度: 460/800 ---
+  [6419] Provisions of the ceasefire and the
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6420] Aleppo, clashes continue on Tishree
+         Top2: [军事, 时政] → 军事 (0.08)
+  [6421] Mazloum Abdi says de escalation eff
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6422] “The Autonomous Administration” cal
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6423] Syrian army takes control of west b
+         Top2: [军事, 时政] → 军事 (0.07)
+  [6424] US-Kurdish stance urges dialogue be
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6425] Clashes Renewed Between Interior Mi
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6426] “The Autonomous Administration”: al
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6427] Syrian army expands control in east
+         Top2: [军事, 时政] → 军事 (0.06)
+  [6428] Investment contract with Turkish co
+         Top2: [时政, 经济] → 经济 (0.06)
+  --- 进度: 470/800 ---
+  [6429] Gestão estratégica sustentável exig
+         Top2: [经济, 时政] → 经济 (0.02)
+  [6430] IGP-10 sobe 0,29% em janeiro de 202
+         Top2: [经济, 时政] → 经济 (0.08)
+  [6431] Inteligência artificial generativa 
+         Top2: [科技, 社会] → 科技 (0.02)
+  [6432] Comitês de ética orientam governanç
+         Top2: [科技, 社会] → 科技 (0.02)
+  [6433] Inovação acelerada amplia debate so
+         Top2: [科技, 经济] → 科技 (0.04)
+  [6434] Publicação da Câmara dos Deputados 
+         Top2: [科技, 社会] → 社会 (0.03)
+  [6435] After Days of Fierce Debate Over Is
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6436] Josh Shapiro Says Harris Campaign A
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6437] Trump Keeps Iran Strike on the Tabl
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6438] Netanyahu Criticizes Trump Over Gaz
+         Top2: [时政, 军事] → 军事 (0.03)
+  --- 进度: 480/800 ---
+  [6439] Trump's Board of Peace Finds Few En
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6440] Trump Invites Putin to Board of Pea
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6441] In a Bid for Stability, Arab States
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6442] Why Did Level-headed People Support
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6443] Explained:The History and (Fragile)
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6444] To Join or Not to Join Trump's Boar
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6445] 一小时生死线：大型企业应对中国网络安全事件新规的           
+         Top2: [科技, 社会] → 社会 (0.02)
+  [6446] How to Train an AI Agent for Comman
+         Top2: [科技, 其他] → 科技 (0.05)
+  [6447] How to Write High-Performance Matri
+         Top2: [科技, 其他] → 科技 (0.03)
+  [6448] NVIDIA DLSS 4.5 Delivers Super Reso
+         Top2: [科技, 其他] → 科技 (0.05)
+  --- 进度: 490/800 ---
+  [6449] Learn How NVIDIA cuOpt Accelerates 
+         Top2: [科技, 其他] → 科技 (0.03)
+  [6450] Reimagining LLM Memory: Using Conte
+         Top2: [科技, 其他] → 科技 (0.05)
+  [6451] Build an AI Catalog System That Del
+         Top2: [科技, 其他] → 科技 (0.03)
+  [6452] Multi-Agent Warehouse AI Command La
+         Top2: [科技, 其他] → 科技 (0.04)
+  [6453] Dinamarca lo confirma: Reunión con 
+         Top2: [时政, 军事] → 时政 (0.04)
+  [6454] Gobernadores de bancos centrales ap
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6455] Delcy Rodríguez recibe a embajadore
+         Top2: [时政, 军事] → 时政 (0.04)
+  [6456] Rusia confirma un ataque masivo en 
+         Top2: [军事, 时政] → 军事 (0.09)
+  [6457] Teherán trata de recuperar la norma
+         Top2: [时政, 军事] → 军事 (0.01)
+  [6458] El vaticinio del canciller Merz: El
+         Top2: [时政, 军事] → 时政 (0.02)
+  --- 进度: 500/800 ---
+  [6459] Una patrulla española desplegada en
+         Top2: [军事, 时政] → 军事 (0.09)
+  [6460] Venezuela dice que han sido excarce
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6461] Un hombre incendia la mayor sinagog
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6462] 'False alarm' - Army dismisses repo
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6463] 'Not right' for Iran to attend Davo
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6464] IMF upgrades Nigeria’s 2026 growth 
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6465] LASEMA warns against scooping spill
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6466] 'Use my towels to wipe your tears' 
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6467] Troops clear terrorists' camps in T
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6468] Hizbullah AI Video Shows White Hous
+         Top2: [军事, 时政] → 军事 (0.03)
+  --- 进度: 510/800 ---
+  [6469] Pentagon Seeks Industry Input on Us
+         Top2: [科技, 军事] → 科技 (0.03)
+  [6470] Аида Балаева поручила усилить работ
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6471] Дерзкое ограбление «по горячим след
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6472] В Чили объявлено чрезвычайное полож
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6473] Смартфоны и шпаргалки: 94 нарушения
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6474] На курултае в Кызылорде Токаев выст
+         Top2: [时政, 社会] → 时政 (0.10)
+  [6475] Токаев: предстоит глубокая реконстр
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6476] Национальный павильон Казахстана от
+         Top2: [时政, 经济] → 经济 (0.03)
+  [6477] День офицера воспитательных структу
+         Top2: [军事, 社会] → 社会 (0.03)
+  [6478] Массовые лыжные состязания пройдут 
+         Top2: [体育, 社会] → 体育 (0.05)
+  --- 进度: 520/800 ---
+  [6479] Martin Luther King Jr. calls for no
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6480] Protesters disrupt church service o
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6481] At least 21 dead, dozens injured in
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6482] Dozens missing, at least 10 dead in
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6483] First case of measles reported on C
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6484] Sean McDermott out as Buffalo Bills
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6485] At least 21 dead, dozens injured af
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6486] Kurdish-led force clashes with Syri
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6487] Novak Djokovic begins bid for 25th 
+         Top2: [体育, 娱乐] → 体育 (0.05)
+  [6488] Trump Announces Tariffs On 8 Countr
+         Top2: [经济, 时政] → 经济 (0.02)
+  --- 进度: 530/800 ---
+  [6489] Senegal win Afcon title after farci
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6490] North East, National All-Stars, Bal
+         Top2: [体育, 社会] → 体育 (0.09)
+  [6491] England and Afghanistan go two from
+         Top2: [体育, 社会] → 体育 (0.02)
+  [6492] Mitchell, Phillips hammer tons as N
+         Top2: [体育, 社会] → 体育 (0.02)
+  [6493] Real Sociedad stun Barcelona 2-1 to
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6494] Jagdeo Racing Stables upbeat as Guy
+         Top2: [体育, 社会] → 社会 (0.02)
+  [6495] Third World co-founder Stephen ‘Cat
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [6496] General Election in Barbados on Fe 
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6497] MP Rajeev Bhardwaj Leads Delegation
+         Top2: [时政, 社会] → 时政 (0.06)
+  [6498] Глава энергетического департамента 
+         Top2: [经济, 时政] → 经济 (0.03)
+  --- 进度: 540/800 ---
+  [6499] Узбекистан и Китай подписали соглаш
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6500] Узбекистан и Mansour Automotive обс
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6501] США пригласили Узбекистан присоедин
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6502] Узбекистан и Армения обсудили сотру
+         Top2: [时政, 经济] → 时政 (0.02)
+  [6503] Соглашение о преференциальной торго
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6504] Ташкент готовится к проведению 46-й
+         Top2: [体育, 时政] → 体育 (0.02)
+  [6505] На Ферганском НПЗ внедрены новые те
+         Top2: [经济, 科技] → 经济 (0.02)
+  [6506] Узбекистан ведет переговоры с США о
+         Top2: [时政, 社会] → 时政 (0.02)
+  [6507] Tylor Cosgrove notes that conspirac
+         Top2: [社会, 其他] → 社会 (0.02)
+  [6508] ‘Brainwashing’: the shocking case o
+         Top2: [社会, 其他] → 社会 (0.02)
+  --- 进度: 550/800 ---
+  [6509] I escaped a cult and was homeless a
+         Top2: [社会, 其他] → 社会 (0.02)
+  [6510] Kenya’s Shakahola cult suspect plea
+         Top2: [社会, 其他] → 社会 (0.02)
+  [6511] 3rd person arrested in alleged murd
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6512] Shakahola massacre trial: Suspect o
+         Top2: [社会, 其他] → 社会 (0.01)
+  [6513] Kenya’s Shakahola cult suspect plea
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6514] ‘Bloodline and Blind Faith: Untold 
+         Top2: [社会, 娱乐] → 社会 (0.02)
+  [6515] Tøjdirektør har fået nok af Trump:'
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6516] Danske Bank anbefaler for første ga
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6517] Røgfrie fællesskaber skal få unge t
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6518] Spaniens pr ierminister lover at fi
+         Top2: [社会, 时政] → 社会 (0.05)
+  --- 进度: 560/800 ---
+  [6519] Norges statsminister til Trump:'All
+         Top2: [时政, 军事] → 军事 (0.05)
+  [6520] Mand idømt otte års fængsel for vol
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6521] Her er, hvad vi ved (og ikke ved) o
+         Top2: [时政, 经济] → 经济 (0.04)
+  [6522] UFFICIALE – Coppa Italia, fissati d
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6523] UFFICIALE – Serie A, gli orari dell
+         Top2: [体育, 其他] → 体育 (0.04)
+  [6524] Serie A, comunicati date e orari de
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6525] Napoli-Chelsea, al via la vendita l
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6526] Napoli-Chelsea, al via la fase 3 di
+         Top2: [体育, 娱乐] → 体育 (0.05)
+  [6527] WOMEN | Lazio-Roma, biglietti in ve
+         Top2: [体育, 其他] → 体育 (0.05)
+  [6528] UFFICIALE – Peljto arbitra Copenagh
+         Top2: [体育, 其他] → 体育 (0.05)
+  --- 进度: 570/800 ---
+  [6529] LIVE Copenaghen-Napoli, dove vederl
+         Top2: [体育, 娱乐] → 体育 (0.03)
+  [6530] UFFICIALE – Peljto arbitra Copenagh
+         Top2: [体育, 其他] → 体育 (0.05)
+  [6531] Champions League, Copenaghen-Napoli
+         Top2: [体育, 其他] → 体育 (0.05)
+  [6532] 체포 방해 혐의 윤석열, 1심 징역 5년 판결에 항소      
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6533] 국무총리실, 野 ‘김민석 종교단체 연루설’ 선 긋기       
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6534] 와이브레인, 삼성전자 출신 임원진 합류…“AI 전자약 플랫폼 강
+         Top2: [科技, 经济] → 科技 (0.05)
+  [6535] 與, ‘1인 1표제’ 당무위 의결…‘연임 적용’ 두고 친명·친청
+         Top2: [时政, 社会] → 时政 (0.07)
+  [6536] 李대통령, 통혁당 재심 무죄에 “참혹한 수사·판결, 책임은 어디
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6537] 해병대 ‘준4군 체제’ 본격 시동…국방장관, 각 군 대비태세 점
+         Top2: [军事, 时政] → 军事 (0.06)
+  [6538] 정청래 “1인 1표는 공공 이익…‘누가 더 이익인가’ 관점 잘못
+         Top2: [时政, 社会] → 时政 (0.08)
+  --- 进度: 580/800 ---
+  [6539] 여야 이견에 시작도 못 한 이혜훈 청문회…“소명 들어야 vs 자
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6540] Søreide om Trump-trusler: – Har ing
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6541] Frankrike etter «fredsråd»-invitasj
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6542] Danmark sender flere soldater til G
+         Top2: [军事, 时政] → 军事 (0.07)
+  [6543] Evakuerer bebuarar etter røykutvikl
+         Top2: [社会, 其他] → 社会 (0.08)
+  [6544] Nittitallsgruppa TLC til Norge     
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [6545] Ny rapport: De rike i verden blir b
+         Top2: [经济, 社会] → 社会 (0.04)
+  [6546] Jotunheimen videregående godkjennes
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6547] Trump i melding til Støre: – Jeg te
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6548] Søreide om Trump-trusler: – Har ing
+         Top2: [时政, 军事] → 时政 (0.03)
+  --- 进度: 590/800 ---
+  [6549] کراچۍ کې اورلګېدنه؛ اور له ۳۳ ساعتو
+         Top2: [社会, 其他] → 社会 (0.06)
+  [6550] سناتور ټېډ کروز: له ټرمپ سره موافق 
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6551] د اټومي ایران ضد د اتحاد سازمان: د 
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6552] په پاریس کې مېشتو ایرانیانو د ایران
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6553] د برېتانیا پخوانی دفاع وزیر: د اسلا
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6554] تېره ورځ له ایران او پاکستان نه نږد
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6555] China’s record surplus makes a mock
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6556] Singapore holds keys to deterring a
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6557] Kurdish autonomy falls, redrawing S
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6558] Trump’s Greenland bid heralds new e
+         Top2: [时政, 经济] → 经济 (0.04)
+  --- 进度: 600/800 ---
+  [6559] The fast-growth mirage of Modinomic
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6560] Trump’s NATO ally tariffs could hav
+         Top2: [时政, 经济] → 经济 (0.03)
+  [6561] Highlights from the inaugural Easte
+         Top2: [时政, 军事] → 军事 (0.04)
+  [6562] Georgian IGF                       
+         Top2: [科技, 时政] → 时政 (0.01)
+  [6563] (KY)NUG                            
+         Top2: [科技, 其他] → 科技 (0.02)
+  [6564] Far dømt for at sende børn pågenopd
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6565] Banedanmark forklarer:Derfor holdt 
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6566] EU-korrespondent:Nyt møde vidner om
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6567] Ledere kan købe en plads i Trumps f
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6568] Stjerneduo laver storfilm om H.C. A
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  --- 进度: 610/800 ---
+  [6569] Marius Borg Høiby erkender transpor
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6570] Trump kommer mere og mere i modvind
+         Top2: [时政, 军事] → 时政 (0.01)
+  [6571] Opsætningen er middelmådig, men byd
+         Top2: [娱乐, 其他] → 娱乐 (0.05)
+  [6572] Kurven er knækket:Færre unge får ti
+         Top2: [经济, 社会] → 社会 (0.07)
+  [6573] Kr l:Putin er inviteret til at delt
+         Top2: [军事, 时政] → 军事 (0.02)
+  [6574] 'Hieruit blijkt dat Sigrid Kaag op 
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6575] Treinongeluk bij Córdoba: politie z
+         Top2: [社会, 时政] → 社会 (0.09)
+  [6576] Marius Borg Høiby aangeklaagd: drug
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6577] Leraar (38) veroordeeld tot celstra
+         Top2: [社会, 其他] → 社会 (0.03)
+  [6578] IJskoude marathon in Siberië: bevro
+         Top2: [体育, 社会] → 体育 (0.05)
+  --- 进度: 620/800 ---
+  [6579] 'PSV moet Saibari na gênant gedrag 
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6580] Training F-35 gevechtsvliegtuigen v
+         Top2: [军事, 社会] → 军事 (0.07)
+  [6581] Dolly Parton Day in Tennessee: eerb
+         Top2: [娱乐, 社会] → 娱乐 (0.05)
+  [6582] Teleurstelling na The Voice: 'Struc
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [6583] Tokyo man suspected of stabbing bai
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6584] Male defendant found hanged at Osak
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6585] 13 Japanese fraud suspects deported
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6586] Ex-president of illegal taxi servic
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6587] Tokyo woman, 66, accused of setting
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6588] Deceased man sent to prosecutors ov
+         Top2: [社会, 时政] → 社会 (0.06)
+  --- 进度: 630/800 ---
+  [6589] Kanagawa cops seize 100 pachinko ma
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6590] Tatekomori: Osaka cops nab man who 
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6591] Hokkaido: Woman’s corpse found hidd
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6592] Decayed corpse found in bag in Edog
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6593] Испаниядаги поездлар тўқнашуви қурб
+         Top2: [社会, 时政] → 社会 (0.12)
+  [6594] 19 январь тафсилотлари Қисқа хабарл
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6595] Ватанга садоқат — ислоҳотлар марказ
+         Top2: [军事, 社会] → 军事 (0.04)
+  [6596] Корея билан ҳамкорлик самараси     
+         Top2: [时政, 经济] → 时政 (0.02)
+  [6597] Экспорт учун йўналтирилган маҳсулот
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6598] Рейтер: Эрон АҚШнинг аралашуви уруш
+         Top2: [时政, 军事] → 军事 (0.05)
+  --- 进度: 640/800 ---
+  [6599] Мурожаатнома мазмуни атрофлича муҳо
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6600] Ифлослантирувчи манбалар назоратдан
+         Top2: [社会, 其他] → 社会 (0.02)
+  [6601] Most minority incidents not communa
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6602] Pakistan mall fire: Death toll rise
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6603] Spain train collision kills 21, lea
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6604] Indian tourists dominate Sri Lanka 
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6605] Two minority deaths in Bangladesh i
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6606] Cape Town naval drill not regular o
+         Top2: [时政, 军事] → 军事 (0.08)
+  [6607] Military activities over Latin Amer
+         Top2: [军事, 时政] → 军事 (0.07)
+  [6608] Two road accidents in Pakistan leav
+         Top2: [社会, 时政] → 社会 (0.05)
+  --- 进度: 650/800 ---
+  [6609] South Korea: Two critical, 11 injur
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6610] US Ambassador Gor stresses strength
+         Top2: [时政, 军事] → 时政 (0.05)
+  [6611] 珠海一住户称点火烧楼 消防通报：明火扑灭 无人员伤亡         
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6612] Governor McKee Announces Investment
+         Top2: [经济, 科技] → 经济 (0.04)
+  [6613] State Small Business Credit Initiat
+         Top2: [经济, 其他] → 经济 (0.03)
+  [6614] P-TECH                             
+         Top2: [科技, 其他] → 科技 (0.05)
+  [6615] 深圳航空通报！一航班滑出时发生故障                  
+         Top2: [社会, 经济] → 社会 (0.09)
+  [6616] Nuevo MAS                          
+         Top2: [时政, 社会] → 时政 (0.02)
+  [6617] La experiencia de construcción de u
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6618] Brasil: la contradicción de la cand
+         Top2: [时政, 社会] → 社会 (0.02)
+  --- 进度: 660/800 ---
+  [6619] Karl Marx (11 de julio de 1868): Ca
+         Top2: [时政, 社会] → 社会 (0.01)
+  [6620] Karl Marx (8 de enero de 1868): Car
+         Top2: [时政, 社会] → 社会 (0.01)
+  [6621] Por qué Estados Unidos quiere el pe
+         Top2: [时政, 军事] → 军事 (0.02)
+  [6622] Incendios en la Patagonia: el fuego
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6623] 最高法：健全涉重点领域民生案件审理机制                
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6624] 云南巧家发生5.1级地震 当地已启动四级应急响应           
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6625] 中国地震局对云南昭通市巧家县地震启动三级应急服务响应         
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6626] 中国空间站舱外服B完成使命退役 神二十一乘组录制视频深情告别     
+         Top2: [科技, 时政] → 科技 (0.03)
+  [6627] 最高检：依法维护经济金融安全 严惩严重经济犯罪            
+         Top2: [经济, 时政] → 时政 (0.03)
+  [6628] 外交部：在华美国企业的成功故事印证了中美之间“合则两利”       
+         Top2: [时政, 经济] → 时政 (0.05)
+  --- 进度: 670/800 ---
+  [6629] 司法部：2026年重点常态化纠治执法突出问题             
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6630] 五部门开展“零碳工厂”遴选，分几步走？                
+         Top2: [经济, 科技] → 经济 (0.02)
+  [6631] 全国检察机关2025年1月至11月提起公诉127.2万人       
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6632] 外交部：欢迎美国企业等各国企业抓住中国高质量发展的“机遇清单”    
+         Top2: [时政, 经济] → 时政 (0.06)
+  [6633] DRONERESPONDERS to host public safe
+         Top2: [科技, 社会] → 科技 (0.03)
+  [6634] Beretta cele ates 500 years with SH
+         Top2: [军事, 社会] → 军事 (0.04)
+  [6635] Staccato introduces new addition to
+         Top2: [军事, 社会] → 军事 (0.05)
+  [6636] Delaware trooper killed in targeted
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6637] Bodycam video of San Diego officer 
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6638] The true story behind Netflix’s “Th
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  --- 进度: 680/800 ---
+  [6639] Dash cam shows crash that left depu
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6640] Officer who joined PD to write cop 
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6641] Bodycam video shows Lewiston office
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6642] 中国超越日本成为第二经济大国——中美GDP逆转也进入视野       
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6643] 中国的崛起有助于日本贸易条件的改善——巨额收入从中国转移到日本    
+         Top2: [经济, 时政] → 经济 (0.09)
+  [6644] AI 测试里程碑到来 ：Testin XAgent智能测试系统发布 测
+         Top2: [科技, 其他] → 科技 (0.08)
+  [6645] 浙江省经济信息中心                          
+         Top2: [科技, 经济] → 经济 (0.03)
+  [6646] 浙江省经济信息中心                          
+         Top2: [经济, 科技] → 经济 (0.05)
+  [6647] 浙江省经济信息中心                          
+         Top2: [科技, 经济] → 经济 (0.03)
+  [6648] 浙江省经济信息中心                          
+         Top2: [社会, 时政] → 社会 (0.02)
+  --- 进度: 690/800 ---
+  [6649] China’s population decline continue
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6650] Kathmandu Mayor Balen Shah resigns,
+         Top2: [时政, 社会] → 社会 (0.01)
+  [6651] "Nothing wrong with reverting to ba
+         Top2: [时政, 社会] → 时政 (0.05)
+  [6652] Irfan Pathan feels Nitish Reddy 'sh
+         Top2: [体育, 社会] → 社会 (0.03)
+  [6653] Telangana Cabinet decides to conduc
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6654] Woman activist hails Delhi HC verdi
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6655] MP CM Mohan Yadav attends Madhyanch
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6656] James Cameron shuts down 'Titanic' 
+         Top2: [娱乐, 社会] → 娱乐 (0.11)
+  [6657] Delhi: Rehearsals for 77th Republic
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6658] Globtier Infotech Enters into Partn
+         Top2: [科技, 经济] → 经济 (0.05)
+  --- 进度: 700/800 ---
+  [6659] 旧店重罚注销后，新店再次被罚，杭州仁术医美得罪消费者？        
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6660] “高薪工作”实为整形贷？杭州颜熙医疗美容遭多起消费投诉！       
+         Top2: [社会, 经济] → 社会 (0.05)
+  [6661] Should Southeast Asia Pay Attention
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6662] “Youth Retirement Homes”: A Tempora
+         Top2: [社会, 经济] → 社会 (0.04)
+  [6663] Marhamah Rosli: Risk or Opportunity
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6664] The Elephant Not in the Room: Thail
+         Top2: [时政, 经济] → 经济 (0.02)
+  [6665] The UEC Debate Reawakens Identity D
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6666] Indonesia in 2026: Prabowo’s First 
+         Top2: [时政, 经济] → 经济 (0.05)
+  [6667] Seats without Sway: Women in Indone
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6668] After three straight years of build
+         Top2: [经济, 其他] → 经济 (0.11)
+  --- 进度: 710/800 ---
+  [6669] 2026 is likely to be a year of grow
+         Top2: [经济, 其他] → 经济 (0.06)
+  [6670]                                    
+         Top2: [经济, 科技] → 经济 (0.04)
+  [6671] Lynda Moore finds a subtler side to
+         Top2: [经济, 其他] → 其他 (0.04)
+  [6672]                                    
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6673] Payments network Worldline reports 
+         Top2: [经济, 科技] → 经济 (0.08)
+  [6674]                                    
+         Top2: [经济, 科技] → 经济 (0.06)
+  [6675]                                    
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6676] Kiwibank's final fixed home loan ra
+         Top2: [经济, 其他] → 经济 (0.13)
+  [6677] Scott Downs                        
+         Top2: [经济, 时政] → 经济 (0.03)
+  [6678] Đưa chùa Bái Đính vào Minecraft, te
+         Top2: [科技, 其他] → 其他 (0.02)
+  --- 进度: 720/800 ---
+  [6679] Tai nạn giao thông nghiêm trọng ở P
+         Top2: [时政, 社会] → 社会 (0.03)
+  [6680] Google đưa AI vào Gmail, ail sắp th
+         Top2: [科技, 其他] → 科技 (0.03)
+  [6681] Nhịp nhanh trên thất dễ ngừng tim đ
+         Top2: [社会, 其他] → 社会 (0.02)
+  [6682] Khởi tố 2 đối tượng mua bán pháo tr
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6683] Đại phẫu trong đêm cứu sống du khác
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6684] Sơ duyệt pháo hoa nghệ thuật quy mô
+         Top2: [社会, 娱乐] → 娱乐 (0.04)
+  [6685] 5 ngày tới, 3 con giáp hái lộc bốn 
+         Top2: [其他, 娱乐] → 其他 (0.04)
+  [6686] Phát hiện 65 'bàn tay' bí ẩn trên đ
+         Top2: [科技, 其他] → 其他 (0.02)
+  [6687] Tân Tổng Giám đốc Giày Thượng Đình 
+         Top2: [经济, 社会] → 经济 (0.09)
+  [6688] Israel wounds several in Gaza as Ha
+         Top2: [军事, 时政] → 军事 (0.08)
+  --- 进度: 730/800 ---
+  [6689] Minneapolis mayor vows ‘we will not
+         Top2: [时政, 军事] → 军事 (0.08)
+  [6690] ‘This is the right decision’ says C
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6691] No cops involved, says Gauteng ANC 
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6692] ‘A day that shakes you’: Death toll
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6693] Nick Hedley | Why the war on the US
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6694] Busy court year for Nafiz Modack as
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6695] 2025年12月10日外交部发言人郭嘉昆主持例行记者会        
+         Top2: [时政, 军事] → 时政 (0.05)
+  [6696] 2025年11月17日外交部发言人毛宁主持例行记者会         
+         Top2: [时政, 军事] → 时政 (0.07)
+  [6697] 2025年10月23日外交部发言人郭嘉昆主持例行记者会        
+         Top2: [时政, 军事] → 时政 (0.04)
+  [6698] Men's ice hockey at Milano Cortina 
+         Top2: [体育, 其他] → 体育 (0.04)
+  --- 进度: 740/800 ---
+  [6699] 2026 Australian Open: Alexandra Eal
+         Top2: [体育, 娱乐] → 体育 (0.06)
+  [6700] AFCON 2025: Fans rock continental s
+         Top2: [体育, 娱乐] → 体育 (0.02)
+  [6701] Murase Kokomo tops womenâ€™s slopes
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6702] SG Pipers vs Shrachi Bengal Tigers 
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6703] Arianna Fontana wins fifth short tr
+         Top2: [体育, 社会] → 体育 (0.04)
+  [6704] Laax Open 2026: Romain All and ends
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6705] From snow crystals to World Cup cou
+         Top2: [体育, 其他] → 其他 (0.03)
+  [6706] FIS Alpine Ski World Cup 2025-26: A
+         Top2: [体育, 社会] → 体育 (0.06)
+  [6707] Emma Aicher holds off Lindsey Vonn 
+         Top2: [体育, 社会] → 体育 (0.05)
+  [6708] Trump refuses ‘to think purely of p
+         Top2: [时政, 军事] → 时政 (0.03)
+  --- 进度: 750/800 ---
+  [6709] Sales of survival gear soaring in G
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6710] US troops depart key military site 
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6711] Repeating past mistakes? Finland fa
+         Top2: [时政, 军事] → 军事 (0.03)
+  [6712] Ukrainian MPs ready to renounce cla
+         Top2: [时政, 军事] → 军事 (0.05)
+  [6713] South African Communist Party to ho
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6714] Mauritius welcomes its first Russia
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6715] 印度女孩：为什么突然之间大家都这么反感印度 - 三泰虎        
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6716] 万亿美元之问：中国能否真正取代美国的SWIFT，数字人民币开始计息，超
+         Top2: [经济, 科技] → 经济 (0.11)
+  [6717] 2026年多款中国电动汽车登陆加拿大，禁令正式解除 - 三泰虎    
+         Top2: [经济, 科技] → 科技 (0.04)
+  [6718] 卢比贬值只是冰山一角，莫迪已摧毁印度经济的基本面 - 三泰虎     
+         Top2: [经济, 时政] → 经济 (0.09)
+  --- 进度: 760/800 ---
+  [6719] 为何印度修不出耐用的公路                       
+         Top2: [社会, 其他] → 社会 (0.06)
+  [6720] 印度专家“一针见血”谈中印经济体量和教育投入：印度是4万亿经济体，教育
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6721] 中国的稀土出口管制给日本经济造成重创，日本网民：禁止对华出口光刻胶吧 
+         Top2: [时政, 经济] → 经济 (0.04)
+  [6722] 印度专家“一针见血”谈中印经济体量和教育投入：印度是4万亿经济体，教育
+         Top2: [经济, 时政] → 经济 (0.06)
+  [6723] Delhi govt to add 7,000 EV charging
+         Top2: [科技, 经济] → 科技 (0.02)
+  [6724] India, UAE agree to boost ties, fin
+         Top2: [经济, 时政] → 时政 (0.04)
+  [6725] Ceat Q3FY26 results: Profit soars 6
+         Top2: [经济, 科技] → 经济 (0.09)
+  [6726] Piyush Goyal meets US ambassador Se
+         Top2: [时政, 经济] → 时政 (0.04)
+  [6727] Tata Capital Q3FY26 results: Profit
+         Top2: [经济, 科技] → 经济 (0.09)
+  [6728] Delhi airport plans to shut third r
+         Top2: [经济, 社会] → 社会 (0.04)
+  --- 进度: 770/800 ---
+  [6729] Bengaluru civic polls to be held af
+         Top2: [时政, 经济] → 时政 (0.05)
+  [6730] 柬埔寨证券市场鼓励控股公司上市融资                  
+         Top2: [经济, 时政] → 经济 (0.09)
+  [6731] 碉堡信托荣获2023年度最佳信托公司奖                
+         Top2: [经济, 科技] → 经济 (0.03)
+  [6732] 西宁气象助力打造高原“菜篮子” ——气候“凉资源” 产业“热动能”  
+         Top2: [其他, 科技] → 其他 (0.02)
+  [6733] 永齡希望小學20週年設立「銘日希望獎助學金」 期許今日種子成為明日希望
+         Top2: [社会, 其他] → 社会 (0.07)
+  [6734] 《一戰再戰》西恩潘：演員與焊工沒什麼不同，想想明天我能做什麼？    
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [6735] 家庭醫師：4個生活技巧，幫你啟動身體的「長壽基因」｜天下雜誌     
+         Top2: [其他, 社会] → 其他 (0.03)
+  [6736] 經濟學人：川普的砲艦資本主義，只會讓世界變更窮            
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6737] 產業速讀：華新麗華煉鋼廠變身科技公司｜「新創堰塞湖」隱憂       
+         Top2: [经济, 科技] → 经济 (0.07)
+  [6738] 50歲罹癌婦人告白：原以為生病是不幸，沒想到卻救了我的人生｜天下雜誌 
+         Top2: [其他, 社会] → 社会 (0.05)
+  --- 进度: 780/800 ---
+  [6739] 國精股價翻250%！留美博士接班，老樹脂廠找日本JSR打進AI、5G 
+         Top2: [经济, 科技] → 经济 (0.08)
+  [6740] From Metal Diplomacy to Rock Realis
+         Top2: [时政, 军事] → 时政 (0.02)
+  [6741] 當AI淪為政治工具：中國如何靠「科技獨裁」阻止政治變革？｜天下雜誌  
+         Top2: [时政, 科技] → 科技 (0.03)
+  [6742] Calls to free pro-democracy tycoon 
+         Top2: [时政, 社会] → 社会 (0.05)
+  [6743] China’s birth rate falls to lowest 
+         Top2: [时政, 社会] → 社会 (0.06)
+  [6744] Two more college student unions at 
+         Top2: [社会, 时政] → 社会 (0.06)
+  [6745] China’s 2025 economic growth among 
+         Top2: [经济, 时政] → 经济 (0.08)
+  [6746] Police drones to be deployed around
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6747] China bids to host secretariat of n
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6748] China, Canada reach ‘landmark’ deal
+         Top2: [时政, 经济] → 时政 (0.05)
+  --- 进度: 790/800 ---
+  [6749] Preliminary Results Show Promise fo
+         Top2: [科技, 社会] → 社会 (0.03)
+  [6750] Pakketbezorgers aan schandpaal gena
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6751] D66, VVD en CDA gaan samenwerken in
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6752] Spain train accident: 21 killed in 
+         Top2: [社会, 时政] → 社会 (0.14)
+  [6753] Aus Open: Gauff ushes past Uzbekist
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6754] Bangladesh AL Minister vows to retu
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6755] Trump says US to get 50 million bar
+         Top2: [时政, 经济] → 经济 (0.04)
+  [6756] Ukrainian, US teams to hold next ro
+         Top2: [时政, 军事] → 时政 (0.03)
+  [6757] Davos 2026 will see global leaders 
+         Top2: [时政, 经济] → 时政 (0.03)
+  [6758] Machado recounts perilous escape fr
+         Top2: [时政, 社会] → 社会 (0.04)
+  --- 进度: 800/800 ---
+  ============================================================
+
+
+[5/5] 评估...
+
+======================================================================
+ 评估结果
+======================================================================
+
+  ┌─────────────┬────────────┬────────────┐
+  │   指标      │   准确率   │   召回率   │
+  ├─────────────┼────────────┼────────────┤
+  │ Top-1 (Emb) │   87.75%   │   87.75%   │
+  │ Top-2 +Rrk  │   72.75%   │   97.62%   │
+  └─────────────┴────────────┴────────────┘
+
+  Top-K 召回详情:
+    - Top-1 召回: 702/800 (87.75%)
+    - Top-2 召回: 781/800 (97.62%)
+
+  Top-K + Reranker 准确率详情:
+    - Top-1 (仅Emb): 702/800 (87.75%)
+    - Top-2 +Rrk: 582/800 (72.75%) [净收益: -120]
+
+  各类别准确率:
+    时政: 43.45% (116/267)
+    经济: 75.40% (95/126)
+    军事: 95.45% (42/44)
+    社会: 95.59% (195/204)
+    科技: 83.72% (36/43)
+    体育: 91.80% (56/61)
+    娱乐: 100.00% (30/30)
+    其他: 48.00% (12/25)
+
+  Top-2 未召回的样本 (共 19 条):
+    [6004] Les secours appelés au siège de Rockstar
+           真实: 社会, Top2: ['科技', '娱乐']
+    [6050] 【乡村振兴看一线】青海海东：千亩“仙女果”实现经济效益与生态效益双赢
+           真实: 经济, Top2: ['社会', '其他']
+    [6068] Estas son las cortitas de hoy lunes 19 d
+           真实: 其他, Top2: ['时政', '社会']
+    [6111] 二零二四年獲減撥款一億五千萬
+           真实: 经济, Top2: ['社会', '时政']
+    [6124] Commission d’enquête sur l’audiovisuel p
+           真实: 时政, Top2: ['娱乐', '社会']
+
+  结果已保存至: /home/zzh/webpage-classification/data/results/hard_negative_train6000_topk2_v2_test800_20260129_162150.json
+======================================================================

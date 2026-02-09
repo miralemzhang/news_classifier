@@ -1,0 +1,194 @@
+{
+    "时政": {
+        "strong": [
+            "Élysée",
+            "Assemblée nationale",
+            "OTAN",
+            "Union européenne",
+            "Maison Blanche",
+            "Kremlin"
+        ],
+        "weak": [
+            "Macron",
+            "Biden",
+            "Trump",
+            "Poutine",
+            "ONU",
+            "président",
+            "gouvernement",
+            "Sénat",
+            "ministère",
+            "diplomatie",
+            "ambassade",
+            "sommet",
+            "sanctions",
+            "élections",
+            "parlement",
+            "politique"
+        ]
+    },
+    "经济": {
+        "strong": [
+            "BCE",
+            "CAC 40",
+            "Wall Street",
+            "NASDAQ",
+            "FMI",
+            "Banque mondiale",
+            "Réserve fédérale"
+        ],
+        "weak": [
+            "Banque centrale",
+            "euro",
+            "inflation",
+            "PIB",
+            "bourse",
+            "actions",
+            "investissement",
+            "taux d'intérêt",
+            "exportations",
+            "importations",
+            "commerce",
+            "entreprise",
+            "chômage",
+            "économie",
+            "budget",
+            "déficit",
+            "croissance",
+            "douane",
+            "douanières",
+            "tarif",
+            "tarifs",
+            "marchés",
+            "marché financier",
+            "dette",
+            "fiscale",
+            "impôt",
+            "taxe"
+        ]
+    },
+    "军事": {
+        "strong": [
+            "Pentagone",
+            "porte-avions",
+            "sous-marin nucléaire",
+            "guerre en Ukraine"
+        ],
+        "weak": [
+            "armée",
+            "forces armées",
+            "guerre",
+            "conflit",
+            "missile",
+            "char",
+            "avion de chasse",
+            "sous-marin",
+            "opération militaire",
+            "frappe",
+            "défense",
+            "armes",
+            "Gaza"
+        ]
+    },
+    "社会": {
+        "strong": [
+            "séisme",
+            "inondation",
+            "ouragan",
+            "meurtre",
+            "peine de mort",
+            "perpétuité"
+        ],
+        "weak": [
+            "accident",
+            "incendie",
+            "secours",
+            "police",
+            "tribunal",
+            "crime",
+            "vol",
+            "fraude",
+            "arrestation",
+            "verdict",
+            "manifestation",
+            "grève",
+            "victimes"
+        ]
+    },
+    "科技": {
+        "strong": [
+            "ChatGPT",
+            "OpenAI",
+            "SpaceX",
+            "iPhone",
+            "Tesla",
+            "NVIDIA"
+        ],
+        "weak": [
+            "intelligence artificielle",
+            "technologie",
+            "internet",
+            "smartphone",
+            "Apple",
+            "Google",
+            "Microsoft",
+            "espace",
+            "fusée",
+            "satellite",
+            "robot",
+            "puce",
+            "semi-conducteurs",
+            "voiture électrique"
+        ]
+    },
+    "体育": {
+        "strong": [
+            "Coupe du monde",
+            "Jeux olympiques",
+            "Ligue des champions",
+            "Ligue 1",
+            "Roland-Garros",
+            "Tour de France",
+            "NBA",
+            "Wimbledon"
+        ],
+        "weak": [
+            "football",
+            "rugby",
+            "tennis",
+            "championnat",
+            "finale",
+            "but",
+            "victoire",
+            "match",
+            "Mbappé",
+            "Messi",
+            "Ronaldo"
+        ]
+    },
+    "娱乐": {
+        "strong": [
+            "Oscar",
+            "César",
+            "Festival de Cannes",
+            "Hollywood",
+            "Netflix",
+            "Disney",
+            "box-office"
+        ],
+        "weak": [
+            "film",
+            "série",
+            "star",
+            "acteur",
+            "chanteur",
+            "concert",
+            "album",
+            "fans"
+        ]
+    },
+    "其他": {
+        "strong": [],
+        "weak": []
+    }
+}

@@ -1,0 +1,591 @@
+Log 保存至: /home/zzh/webpage-classification/data/results/hard_negative_mining_train800_topk2_test200_20260127_173839.log
+======================================================================
+ Hard Negative Mining 分类器 - 训练阶段
+======================================================================
+============================================================
+ Hard Negative Mining 分类器
+============================================================
+难样本权重: 2.0x
+Margin 阈值: 0.05
+混淆类别对: 5 对
+  - 时政 ↔ 军事
+  - 时政 ↔ 社会
+  - 其他 ↔ 社会
+  - 经济 ↔ 科技
+  - 社会 ↔ 经济
+
+加载 Embedding 模型...
+正在加载模型: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+设备: cuda, 数据类型: torch.bfloat16
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 125.08it/s]
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/torch/cuda/__init__.py:283: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  warnings.warn(
+模型已加载，等待调用 train_from_data() 训练...
+模型加载完成!
+
+计算增强版类别嵌入...
+  时政: 2 个模板
+  经济: 2 个模板
+  军事: 2 个模板
+  社会: 2 个模板
+  科技: 2 个模板
+  体育: 1 个模板
+  娱乐: 1 个模板
+  其他: 2 个模板
+
+初始化完成!
+============================================================
+
+============================================================
+ Hard Negative Mining 训练
+============================================================
+
+训练数据分布:
+  时政: 286 条 ⚠️
+  经济: 95 条 ⚠️
+  军事: 52 条 ⚠️
+  社会: 173 条 ⚠️
+  科技: 24 条 ⚠️
+  体育: 34 条 
+  娱乐: 43 条 
+  其他: 93 条 ⚠️
+  总计: 800 条
+
+计算加权类别嵌入...
+  时政: 286 样本, 平均权重 2.00x
+  经济: 95 样本, 平均权重 2.00x
+  军事: 52 样本, 平均权重 2.00x
+  社会: 173 样本, 平均权重 2.00x
+  科技: 24 样本, 平均权重 2.00x
+  体育: 34 样本, 平均权重 1.00x
+  娱乐: 43 样本, 平均权重 1.00x
+  其他: 93 样本, 平均权重 2.00x
+
+训练完成! 耗时: 144.2s
+============================================================
+类别嵌入已保存至: /home/zzh/webpage-classification/models/hard_negative_train800.pt
+======================================================================
+ 两阶段分类器 - 训练与评估
+ Stage 1: Embedding (Top-2) + Stage 2: Reranker (Top-1)
+======================================================================
+数据文件: /home/zzh/webpage-classification/data/labeled/labeled.jsonl
+训练样本: 800 条
+测试样本: 200 条
+Top-K: 2
+Doc版本: v2 (简洁字符串)
+加载路径: /home/zzh/webpage-classification/models/hard_negative_train800.pt
+======================================================================
+
+[1/5] 加载数据...
+  总计: 1041 条
+  训练集: 800 条
+  测试集: 200 条
+
+[2/5] 初始化分类器...
+============================================================
+ 两阶段分类器初始化
+============================================================
+
+[Stage 1] 加载 Embedding 模型...
+正在加载模型: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+设备: cuda, 数据类型: torch.bfloat16
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 130.43it/s]
+正在计算类别模板嵌入...
+已初始化 8 个类别的嵌入
+模型加载完成!
+
+[Stage 2] 加载 Reranker 模型...
+  使用默认注意力机制
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 127.98it/s]
+  Reranker 加载完成: /home/zzh/webpage-classification/models/Qwen3-VL-Reranker-8B
+
+============================================================
+ 初始化完成
+============================================================
+
+[3/5] 加载已训练的类别嵌入...
+类别嵌入已加载: /home/zzh/webpage-classification/models/hard_negative_train800.pt
+  类别数: 8
+  向量维度: 4096
+
+[4/5] 测试...
+
+  ============================================================
+  两阶段分类 (共 200 条)
+  ============================================================
+You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/transformers/tokenization_utils_base.py:2919: UserWarning: `max_length` is ignored when `padding`=`True` and there is no truncation strategy. To pad to max length, use `padding='max_length'`.
+  warnings.warn(
+  [ 800] 中台湾党部主委人事　郑丽文着眼县市长选举               
+         Top2: [时政, 社会] → 时政 (0.03)
+  [ 801] 陆人申请在台定居新规　应缴放弃护照公证书               
+         Top2: [时政, 社会] → 社会 (0.05)
+  [ 802] 记住“96120”！全市统一！正式开通 - 临安新闻网 | 临安新闻门
+         Top2: [社会, 其他] → 社会 (0.08)
+  [ 803] 西宁中支以模范机关创建为契机 办好“人民币发行为人民”五件实事    
+         Top2: [经济, 时政] → 时政 (0.03)
+  [ 804] 2025年中国人民银行工作会议召开                  
+         Top2: [经济, 时政] → 时政 (0.09)
+  [ 805] 西宁中心支行：各式督导多措并举 调查宣传群策群力           
+         Top2: [经济, 时政] → 经济 (0.04)
+  [ 806] 台股創高外資卻提款280億元 創天價的台積電及這6檔漲停股遭調節   
+         Top2: [经济, 科技] → 经济 (0.12)
+  [ 807] 傳奇投資者Grantham警告AI泡沫：機會不在股市而在風險投資   
+         Top2: [经济, 科技] → 经济 (0.04)
+  [ 808] 胡潤中國AI企業50強榜出爐！前十強AI晶片企業佔七席 寒武紀、摩爾線
+         Top2: [科技, 经济] → 科技 (0.05)
+  [ 809] 美光收購力積電銅鑼廠 2027年全球DRAM供給上修         
+         Top2: [科技, 经济] → 经济 (0.08)
+  --- 进度: 10/200 ---
+  [ 810] 不再只是科技股！華爾街：美股漲勢向傳統產業全面擴散          
+         Top2: [经济, 科技] → 经济 (0.08)
+  [ 811] 蘋果重返中國手機市占第一！iPhone出貨暴增28%、華為小米出貨量衰
+         Top2: [科技, 经济] → 经济 (0.04)
+  [ 812] 美股周一因馬丁路德金恩紀念日休市                   
+         Top2: [经济, 时政] → 经济 (0.06)
+  [ 813] 想賺AI又怕泡沫？美銀提「完美對沖」策略：改抱這四大相鄰領域     
+         Top2: [经济, 科技] → 经济 (0.06)
+  [ 814] 高盛2026年中國經濟展望：出口韌性支撐4.8%增長 房地產拖累預計逐
+         Top2: [经济, 时政] → 经济 (0.10)
+  [ 815] 投資人拋售美元、資金轉向避險！市場解讀川普揚言對格陵蘭祭關稅     
+         Top2: [经济, 时政] → 经济 (0.08)
+  [ 816] Australia Day long weekend beer sup
+         Top2: [社会, 经济] → 社会 (0.05)
+  [ 817] Inflation, interest rates: IMF warn
+         Top2: [经济, 时政] → 经济 (0.06)
+  [ 818] Chris Webster practice closure foll
+         Top2: [社会, 其他] → 社会 (0.08)
+  [ 819] Under-19 World Cup: Australia will 
+         Top2: [体育, 社会] → 体育 (0.04)
+  --- 进度: 20/200 ---
+  [ 820] Man taken to hospital after fox att
+         Top2: [社会, 其他] → 其他 (0.05)
+  [ 821] What’s open Australia Day 2026: sho
+         Top2: [其他, 社会] → 其他 (0.03)
+  [ 822] Hanson claims Charlie Kirk ‘assassi
+         Top2: [时政, 社会] → 时政 (0.03)
+  [ 823] 11yo surfer ‘rattled’ amid second s
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 824] Bakehouse by Vic Brighton vandalise
+         Top2: [社会, 其他] → 社会 (0.05)
+  [ 825] Labor strategist Tim Picton dies we
+         Top2: [社会, 时政] → 社会 (0.05)
+  [ 826] Saurom anuncia Meet & Greet exclusi
+         Top2: [娱乐, 社会] → 娱乐 (0.09)
+  [ 827] Ilopango Air Show 2026 ya tiene fec
+         Top2: [娱乐, 社会] → 社会 (0.02)
+  [ 828] La cuarta temporada de “Bridgerton”
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [ 829] Video| Agua Escondida, el rincón co
+         Top2: [其他, 社会] → 其他 (0.04)
+  --- 进度: 30/200 ---
+  [ 830] Embutidos Amparito: 100 años de tra
+         Top2: [其他, 社会] → 其他 (0.05)
+  [ 831] Agua Escondida, el rincón con vista
+         Top2: [其他, 社会] → 其他 (0.04)
+  [ 832] Conocé los precios de la gasolina y
+         Top2: [经济, 社会] → 社会 (0.04)
+  [ 833] Oro y plata alcanzan máximos histór
+         Top2: [经济, 时政] → 经济 (0.04)
+  [ 834] Nuevas leyes que entraron en vigenc
+         Top2: [时政, 社会] → 社会 (0.02)
+  [ 835] Embutidos Amparito: 100 años de tra
+         Top2: [其他, 社会] → 其他 (0.04)
+  [ 836] CollegeDekho names Tapan Jindal as 
+         Top2: [科技, 经济] → 经济 (0.05)
+  [ 837] Nissan names Gagan Mangal as Head o
+         Top2: [经济, 科技] → 经济 (0.02)
+  [ 838] Gaurav Laghate to Lead Corporate Br
+         Top2: [娱乐, 科技] → 娱乐 (0.04)
+  [ 839] Coach Names Arjoon Bose Vice Presid
+         Top2: [经济, 其他] → 其他 (0.04)
+  --- 进度: 40/200 ---
+  [ 840] Flipkart appoints Jane Duke as Chie
+         Top2: [科技, 经济] → 经济 (0.05)
+  [ 841] CleanStart appoints Anil Dhoot as C
+         Top2: [科技, 经济] → 经济 (0.02)
+  [ 842] boAt promotes Sammyak Jain to Busin
+         Top2: [科技, 经济] → 经济 (0.03)
+  [ 843] Schaeffler appoints Maximilian Fied
+         Top2: [经济, 时政] → 经济 (0.04)
+  [ 844] GRB Ghee brand Founder G. R. Balasu
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 845] Dina Powell McCormick Takes on Top 
+         Top2: [科技, 经济] → 经济 (0.03)
+  [ 846] Jasmine Aikey wins top college socc
+         Top2: [体育, 社会] → 体育 (0.05)
+  [ 847] Five thrilling Stanford Athletics m
+         Top2: [体育, 社会] → 体育 (0.04)
+  [ 848] Blume Earthquake Engineering Center
+         Top2: [科技, 其他] → 其他 (0.01)
+  [ 849] Le Venezuela : un gros caillou dans
+         Top2: [时政, 军事] → 时政 (0.03)
+  --- 进度: 50/200 ---
+  [ 850] किश्तवाड़ एनकाउंटर में शहीद हुआ पैर
+         Top2: [军事, 时政] → 军事 (0.06)
+  [ 851] ठंडे पानी में दो घंटे तक मौत से संघ
+         Top2: [社会, 时政] → 社会 (0.13)
+  [ 852] Shukra Uday 2026: शुक्र होने वाले ह
+         Top2: [其他, 娱乐] → 其他 (0.09)
+  [ 853] करण औजला के सपोर्ट में पारुल गुलाटी
+         Top2: [娱乐, 社会] → 娱乐 (0.23)
+  [ 854] VB–G RAM G एक्ट के विरोध में राहुल 
+         Top2: [时政, 社会] → 社会 (0.09)
+  [ 855] काबुल के हाई सिक्योरिटी इलाके में ह
+         Top2: [军事, 社会] → 社会 (0.07)
+  [ 856] नोएडा हादसे पर CM योगी सख्त, 3 सदस्
+         Top2: [社会, 时政] → 社会 (0.11)
+  [ 857] PAK सेलेब्स ने महसूस किया यामी गौतम
+         Top2: [娱乐, 社会] → 娱乐 (0.13)
+  [ 858] सोशल मीडिया ट्रायल: कोझिकोड में वाय
+         Top2: [社会, 时政] → 社会 (0.09)
+  [ 859] 'धरोहरें तोड़ी नहीं संजोयी जाती हैं
+         Top2: [时政, 社会] → 社会 (0.07)
+  --- 进度: 60/200 ---
+  [ 860] 200 hours of silence: Reporting fro
+         Top2: [时政, 社会] → 社会 (0.04)
+  [ 861] Samsung's Texas plant emerges as bu
+         Top2: [科技, 经济] → 经济 (0.05)
+  [ 862] For Koreans, 'good death' means com
+         Top2: [社会, 时政] → 社会 (0.06)
+  [ 863] Korea, Italy agree to deepen indust
+         Top2: [时政, 经济] → 时政 (0.04)
+  [ 864] Genuine mindfulness or unrealistic 
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 865] Young Koreans face double strain fr
+         Top2: [经济, 社会] → 经济 (0.04)
+  [ 866] Japanese anime returns to rescue st
+         Top2: [娱乐, 社会] → 娱乐 (0.05)
+  [ 867] Ex-floor leader of ruling party dec
+         Top2: [时政, 社会] → 时政 (0.04)
+  [ 868] Balvenie takes hit as 'Culinary Cla
+         Top2: [社会, 娱乐] → 娱乐 (0.09)
+  [ 870] Recruitment Status: SOCIAL WORKER I
+         Top2: [社会, 其他] → 社会 (0.04)
+  --- 进度: 70/200 ---
+  [ 871] Recruitment Status: LICENSED PRACTI
+         Top2: [其他, 社会] → 社会 (0.04)
+  [ 872] Recruitment Status: SOCIAL WORKER I
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 873] Recruitment Status: DIRECT CARE TRA
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 874] Recruitment Status: DIRECT CARE ASS
+         Top2: [其他, 社会] → 社会 (0.04)
+  [ 875] Recruitment Status: A/D Licensed Cl
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 876] Recruitment Status: PSYCHOLOGIST, C
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 877] Recruitment Status: PSCS Social Wor
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 878] Recruitment Status: Alcohol & Drug 
+         Top2: [其他, 社会] → 社会 (0.03)
+  [ 879] Recruitment Status: A/D Certified A
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 881] Delhi Bar Council has rarely had wo
+         Top2: [时政, 社会] → 时政 (0.04)
+  --- 进度: 80/200 ---
+  [ 882] How Ukraine war brought a $2.2 bn-d
+         Top2: [经济, 时政] → 经济 (0.02)
+  [ 883] Firm wouldn't exist without you—HC 
+         Top2: [社会, 时政] → 社会 (0.05)
+  [ 884] 'No illegality': SC rejects Justice
+         Top2: [时政, 社会] → 时政 (0.03)
+  [ 885] Centre comes out in support of pass
+         Top2: [社会, 时政] → 社会 (0.04)
+  [ 886] ED-Jharkhand Police face-off: HC ra
+         Top2: [时政, 社会] → 社会 (0.04)
+  [ 887] From makeshift structures to modern
+         Top2: [时政, 社会] → 社会 (0.02)
+  [ 888] Higher education institutions must 
+         Top2: [社会, 时政] → 社会 (0.03)
+  [ 889] Yahoo yodel to Taj Hotels' signatur
+         Top2: [科技, 其他] → 其他 (0.04)
+  [ 891] トランプ氏「平和のみ考える義務感じない」　平和賞を受賞できなかったこと
+         Top2: [时政, 军事] → 时政 (0.04)
+  [ 892] ロンドン「巨大中国大使館計画」に抗議デモ　香港からの亡命者にも波紋　中
+         Top2: [时政, 社会] → 社会 (0.06)
+  --- 进度: 90/200 ---
+  [ 893] EUと南米4カ国　自由貿易協定に署名　世界のGDP約20％占める巨大市
+         Top2: [经济, 时政] → 经济 (0.07)
+  [ 894] グリーンランド領有めぐりトランプ氏「反対国に追加関税」        
+         Top2: [时政, 军事] → 军事 (0.05)
+  [ 895] トランプ氏 グリーンランドめぐり追加関税　欧州8カ国は共同声明で反論 
+         Top2: [时政, 军事] → 军事 (0.07)
+  [ 896] 英首相　グリーンランド領有めぐる関税は「完全に誤り」　EUは報復関税検
+         Top2: [时政, 经济] → 经济 (0.06)
+  [ 897] トランプ氏「デンマークは何もできていない」　グリーンランドの安全保障め
+         Top2: [时政, 军事] → 军事 (0.06)
+  [ 899] 中米グアテマラでギャングが警察を襲撃　警察官7人死亡　大統領は非常事態
+         Top2: [社会, 时政] → 社会 (0.10)
+  [ 900] 高速列車が脱線・衝突し7人死亡　隣の線路にはみ出し別の高速列車と衝突　
+         Top2: [社会, 时政] → 社会 (0.15)
+  [ 901] China's Coal Ban Improved Air Quali
+         Top2: [社会, 时政] → 社会 (0.07)
+  [ 902] 2026-01-19,                        
+         Top2: [时政, 军事] → 时政 (0.03)
+  [ 903] Spurs gear up for Jazz after narrow
+         Top2: [体育, 社会] → 体育 (0.05)
+  --- 进度: 100/200 ---
+  [ 904] NEWProducer price index in December
+         Top2: [经济, 时政] → 经济 (0.08)
+  [ 905] Country singer Karley Scott Collins
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [ 906] Nose biometric for cows: How Ahmeda
+         Top2: [科技, 社会] → 社会 (0.04)
+  [ 907] Bruce Springsteen calls out ICE dur
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [ 908] Famous 'Thorn Birds' beauty, 68, cl
+         Top2: [娱乐, 其他] → 娱乐 (0.14)
+  [ 909] UP eyes technology leadership in gr
+         Top2: [科技, 经济] → 科技 (0.04)
+  [ 910] 2026-01-19,                        
+         Top2: [军事, 时政] → 军事 (0.07)
+  [ 911] 【大美广东】Villagers Enjoy Villa-Style L
+         Top2: [其他, 社会] → 其他 (0.03)
+  [ 913] 透过 HoloLens,微软抢先看到了个人计算机的未来        
+         Top2: [科技, 其他] → 科技 (0.07)
+  [ 914] Tension Returns to European Stock M
+         Top2: [经济, 时政] → 经济 (0.08)
+  --- 进度: 110/200 ---
+  [ 915] Ukrainian drone strikes cut power t
+         Top2: [军事, 社会] → 军事 (0.05)
+  [ 916] Hassane Kouyaté, the African griot 
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [ 917] Trump confidants, former British le
+         Top2: [时政, 军事] → 军事 (0.02)
+  [ 918] A timeline of how the U.S. and Euro
+         Top2: [时政, 军事] → 军事 (0.02)
+  [ 919] The End of an Era: everything revea
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [ 920] Trump's voice in a new Fannie Mae a
+         Top2: [经济, 时政] → 经济 (0.04)
+  [ 870] Recruitment Status: SOCIAL WORKER I
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 871] Recruitment Status: LICENSED PRACTI
+         Top2: [其他, 社会] → 社会 (0.04)
+  [ 872] Recruitment Status: SOCIAL WORKER I
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 873] Recruitment Status: DIRECT CARE TRA
+         Top2: [社会, 其他] → 社会 (0.04)
+  --- 进度: 120/200 ---
+  [ 874] Recruitment Status: DIRECT CARE ASS
+         Top2: [其他, 社会] → 社会 (0.04)
+  [ 875] Recruitment Status: A/D Licensed Cl
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 876] Recruitment Status: PSYCHOLOGIST, C
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 877] Recruitment Status: PSCS Social Wor
+         Top2: [社会, 其他] → 社会 (0.04)
+  [ 878] Recruitment Status: Alcohol & Drug 
+         Top2: [其他, 社会] → 社会 (0.03)
+  [ 879] Recruitment Status: A/D Certified A
+         Top2: [其他, 社会] → 社会 (0.02)
+  [ 881] Delhi Bar Council has rarely had wo
+         Top2: [时政, 社会] → 时政 (0.04)
+  [ 882] How Ukraine war brought a $2.2 bn-d
+         Top2: [经济, 时政] → 经济 (0.02)
+  [ 883] Firm wouldn't exist without you—HC 
+         Top2: [社会, 时政] → 社会 (0.05)
+  [ 884] 'No illegality': SC rejects Justice
+         Top2: [时政, 社会] → 时政 (0.03)
+  --- 进度: 130/200 ---
+  [ 885] Centre comes out in support of pass
+         Top2: [社会, 时政] → 社会 (0.04)
+  [ 886] ED-Jharkhand Police face-off: HC ra
+         Top2: [时政, 社会] → 社会 (0.04)
+  [ 887] From makeshift structures to modern
+         Top2: [时政, 社会] → 社会 (0.02)
+  [ 888] Higher education institutions must 
+         Top2: [社会, 时政] → 社会 (0.03)
+  [ 889] Yahoo yodel to Taj Hotels' signatur
+         Top2: [科技, 其他] → 其他 (0.04)
+  [ 891] トランプ氏「平和のみ考える義務感じない」　平和賞を受賞できなかったこと
+         Top2: [时政, 军事] → 时政 (0.04)
+  [ 892] ロンドン「巨大中国大使館計画」に抗議デモ　香港からの亡命者にも波紋　中
+         Top2: [时政, 社会] → 社会 (0.06)
+  [ 893] EUと南米4カ国　自由貿易協定に署名　世界のGDP約20％占める巨大市
+         Top2: [经济, 时政] → 经济 (0.07)
+  [ 894] グリーンランド領有めぐりトランプ氏「反対国に追加関税」        
+         Top2: [时政, 军事] → 军事 (0.05)
+  [ 895] トランプ氏 グリーンランドめぐり追加関税　欧州8カ国は共同声明で反論 
+         Top2: [时政, 军事] → 军事 (0.07)
+  --- 进度: 140/200 ---
+  [ 896] 英首相　グリーンランド領有めぐる関税は「完全に誤り」　EUは報復関税検
+         Top2: [时政, 经济] → 经济 (0.06)
+  [ 897] トランプ氏「デンマークは何もできていない」　グリーンランドの安全保障め
+         Top2: [时政, 军事] → 军事 (0.06)
+  [ 899] 中米グアテマラでギャングが警察を襲撃　警察官7人死亡　大統領は非常事態
+         Top2: [社会, 时政] → 社会 (0.10)
+  [ 900] 高速列車が脱線・衝突し7人死亡　隣の線路にはみ出し別の高速列車と衝突　
+         Top2: [社会, 时政] → 社会 (0.15)
+  [ 901] China's Coal Ban Improved Air Quali
+         Top2: [社会, 时政] → 社会 (0.07)
+  [ 902] 2026-01-19,                        
+         Top2: [时政, 军事] → 时政 (0.03)
+  [ 903] Spurs gear up for Jazz after narrow
+         Top2: [体育, 社会] → 体育 (0.05)
+  [ 904] NEWProducer price index in December
+         Top2: [经济, 时政] → 经济 (0.08)
+  [ 905] Country singer Karley Scott Collins
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [ 906] Nose biometric for cows: How Ahmeda
+         Top2: [科技, 社会] → 社会 (0.04)
+  --- 进度: 150/200 ---
+  [ 907] Bruce Springsteen calls out ICE dur
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [ 908] Famous 'Thorn Birds' beauty, 68, cl
+         Top2: [娱乐, 其他] → 娱乐 (0.14)
+  [ 909] UP eyes technology leadership in gr
+         Top2: [科技, 经济] → 科技 (0.04)
+  [ 910] 2026-01-19,                        
+         Top2: [军事, 时政] → 军事 (0.07)
+  [ 911] 【大美广东】Villagers Enjoy Villa-Style L
+         Top2: [其他, 社会] → 其他 (0.03)
+  [ 913] 透过 HoloLens,微软抢先看到了个人计算机的未来        
+         Top2: [科技, 其他] → 科技 (0.07)
+  [ 914] Tension Returns to European Stock M
+         Top2: [经济, 时政] → 经济 (0.08)
+  [ 915] Ukrainian drone strikes cut power t
+         Top2: [军事, 社会] → 军事 (0.05)
+  [ 916] Hassane Kouyaté, the African griot 
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [ 917] Trump confidants, former British le
+         Top2: [时政, 军事] → 军事 (0.02)
+  --- 进度: 160/200 ---
+  [ 918] A timeline of how the U.S. and Euro
+         Top2: [时政, 军事] → 军事 (0.02)
+  [ 919] The End of an Era: everything revea
+         Top2: [娱乐, 其他] → 娱乐 (0.07)
+  [ 920] Trump's voice in a new Fannie Mae a
+         Top2: [经济, 时政] → 经济 (0.04)
+  [ 921] DOJ vows to press charges after act
+         Top2: [社会, 时政] → 社会 (0.03)
+  [ 922] Princess Eugenie of York has cut co
+         Top2: [社会, 娱乐] → 社会 (0.06)
+  [ 923] Inequality and unease are rising as
+         Top2: [经济, 时政] → 经济 (0.03)
+  [ 924] Сили оборони Півдня: Ворог мінує Гу
+         Top2: [军事, 社会] → 军事 (0.06)
+  [ 925] ВАКС переніс на завтра розгляд спра
+         Top2: [时政, 社会] → 社会 (0.04)
+  [ 926] У Харкові пролунали вибухи: зафіксо
+         Top2: [军事, 社会] → 军事 (0.07)
+  [ 927] У Саратові та Енгельсі лунають вибу
+         Top2: [军事, 社会] → 军事 (0.07)
+  --- 进度: 170/200 ---
+  [ 928] Війська РФ завдали удару по Запоріж
+         Top2: [军事, 社会] → 军事 (0.07)
+  [ 929] Росія атакує Україну шахедами і КАБ
+         Top2: [军事, 时政] → 军事 (0.12)
+  [ 930] ЗМІ дізнались, коли Україна розрахо
+         Top2: [时政, 军事] → 军事 (0.02)
+  [ 931] Сили оборони у 2025 році уразили 71
+         Top2: [军事, 时政] → 军事 (0.11)
+  [ 932] Росія атакувала Україну понад 200 д
+         Top2: [军事, 时政] → 军事 (0.06)
+  [ 933] Сили оборони України просунулися бі
+         Top2: [军事, 社会] → 军事 (0.06)
+  [ 934] 2026-01-19T13:20:38+00:00          
+         Top2: [娱乐, 社会] → 娱乐 (0.05)
+  [ 935] 2026-01-19T13:05:59+00:00          
+         Top2: [体育, 其他] → 体育 (0.05)
+  [ 936] 2026-01-19T12:40:00+00:00          
+         Top2: [体育, 其他] → 体育 (0.05)
+  [ 937] 2026-01-19T12:04:21+00:00          
+         Top2: [社会, 时政] → 社会 (0.12)
+  --- 进度: 180/200 ---
+  [ 938] 2026-01-19T12:01:26+00:00          
+         Top2: [娱乐, 社会] → 娱乐 (0.08)
+  [ 939] 2026-01-19T12:00:00+00:00          
+         Top2: [体育, 其他] → 体育 (0.06)
+  [ 940] 2026-01-19T11:25:10+00:00          
+         Top2: [时政, 社会] → 社会 (0.02)
+  [ 941] 2026-01-19T11:00:00+00:00          
+         Top2: [体育, 娱乐] → 娱乐 (0.03)
+  [ 942] 2026-01-19T11:00:00+00:00          
+         Top2: [其他, 社会] → 社会 (0.03)
+  [ 943] 2026-01-19T11:00:00+00:00          
+         Top2: [时政, 社会] → 社会 (0.02)
+  [ 944] 香港電台網站 : 電視|姊妹們的犯太歲                
+         Top2: [娱乐, 其他] → 娱乐 (0.06)
+  [ 945] 31看世界 - 深夜潛行                       
+         Top2: [娱乐, 其他] → 其他 (0.03)
+  [ 946] Joel Sumlok Tse (flute) and Chan Wa
+         Top2: [娱乐, 其他] → 娱乐 (0.12)
+  [ 947] 香港電台網站 : 電視|時光代理人                  
+         Top2: [娱乐, 其他] → 娱乐 (0.08)
+  --- 进度: 190/200 ---
+  [ 948] Delight in a Bite 一時之選             
+         Top2: [娱乐, 其他] → 娱乐 (0.09)
+  [ 949] GBA Concert Hall – Macao Chinese Or
+         Top2: [娱乐, 其他] → 娱乐 (0.10)
+  [ 950] 安徽有公司发生中毒事故酿4死　调查认为是安全责任事故         
+         Top2: [社会, 时政] → 社会 (0.08)
+  [ 951] Music Insider 新聲事務所                
+         Top2: [娱乐, 其他] → 娱乐 (0.08)
+  [ 952] 31看世界 - 千年陝菜 (第二季)                 
+         Top2: [娱乐, 其他] → 其他 (0.08)
+  [ 953] 香港電台網站 : 電視|議政四方                   
+         Top2: [时政, 社会] → 时政 (0.05)
+  [ 954] 广东汕头火灾遇难人数增至12人财经新闻 Financial News 
+         Top2: [经济, 社会] → 社会 (0.09)
+  [ 955] 深度 | 电力行业网络安全态势研究                  
+         Top2: [军事, 时政] → 军事 (0.02)
+  [ 956] 'Our politicians should not patroni
+         Top2: [社会, 时政] → 社会 (0.05)
+  [ 957] Four ways to reduce prison overcrow
+         Top2: [社会, 时政] → 社会 (0.04)
+  --- 进度: 200/200 ---
+  ============================================================
+
+
+[5/5] 评估...
+
+======================================================================
+ 评估结果
+======================================================================
+
+  ┌─────────────┬────────────┬────────────┐
+  │   指标      │   准确率   │   召回率   │
+  ├─────────────┼────────────┼────────────┤
+  │ Top-1 (Emb) │   71.00%   │   71.00%   │
+  │ Top-2 +Rrk  │   58.50%   │   91.00%   │
+  └─────────────┴────────────┴────────────┘
+
+  Top-K 召回详情:
+    - Top-1 召回: 142/200 (71.00%)
+    - Top-2 召回: 182/200 (91.00%)
+
+  Top-K + Reranker 准确率详情:
+    - Top-1 (仅Emb): 142/200 (71.00%)
+    - Top-2 +Rrk: 117/200 (58.50%) [净收益: -25]
+
+  各类别准确率:
+    时政: 21.43% (9/42)
+    经济: 77.14% (27/35)
+    军事: 100.00% (10/10)
+    社会: 80.56% (29/36)
+    科技: 57.14% (4/7)
+    体育: 88.89% (8/9)
+    娱乐: 88.89% (24/27)
+    其他: 17.65% (6/34)
+
+  Top-2 未召回的样本 (共 18 条):
+    [ 803] 西宁中支以模范机关创建为契机 办好“人民币发行为人民”五件实事
+           真实: 其他, Top2: ['经济', '时政']
+    [ 804] 2025年中国人民银行工作会议召开
+           真实: 其他, Top2: ['经济', '时政']
+    [ 805] 西宁中心支行：各式督导多措并举 调查宣传群策群力
+           真实: 其他, Top2: ['经济', '时政']
+    [ 817] Inflation, interest rates: IMF warns Aus
+           真实: 社会, Top2: ['经济', '时政']
+    [ 821] What’s open Australia Day 2026: shops, s
+           真实: 经济, Top2: ['其他', '社会']
+
+  结果已保存至: data/results/hard_negative_train800_topk2_v2_test200_20260127_174710.json
+======================================================================

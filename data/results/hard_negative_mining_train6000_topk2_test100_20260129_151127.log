@@ -1,0 +1,382 @@
+Log 保存至: /home/zzh/webpage-classification/data/results/hard_negative_mining_train6000_topk2_test100_20260129_151127.log
+======================================================================
+ Hard Negative Mining 分类器 - 训练阶段
+======================================================================
+============================================================
+ Hard Negative Mining 分类器
+============================================================
+难样本权重: 2.0x
+Margin 阈值: 0.05
+混淆类别对: 5 对
+  - 时政 ↔ 军事
+  - 时政 ↔ 社会
+  - 其他 ↔ 社会
+  - 经济 ↔ 科技
+  - 社会 ↔ 经济
+
+加载 Embedding 模型...
+正在加载模型: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+设备: cuda, 数据类型: torch.bfloat16
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 119.94it/s]
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/torch/cuda/__init__.py:283: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  warnings.warn(
+模型已加载，等待调用 train_from_data() 训练...
+模型加载完成!
+
+计算增强版类别嵌入...
+  时政: 2 个模板
+  经济: 2 个模板
+  军事: 2 个模板
+  社会: 2 个模板
+  科技: 2 个模板
+  体育: 1 个模板
+  娱乐: 1 个模板
+  其他: 2 个模板
+
+初始化完成!
+============================================================
+
+============================================================
+ Hard Negative Mining 训练
+============================================================
+
+训练数据分布:
+  时政: 2135 条 ⚠️
+  经济: 848 条 ⚠️
+  军事: 308 条 ⚠️
+  社会: 1433 条 ⚠️
+  科技: 293 条 ⚠️
+  体育: 324 条 
+  娱乐: 296 条 
+  其他: 363 条 ⚠️
+  总计: 6000 条
+
+计算加权类别嵌入...
+  时政: 2135 样本, 平均权重 2.00x
+  经济: 848 样本, 平均权重 2.00x
+  军事: 308 样本, 平均权重 2.00x
+  社会: 1433 样本, 平均权重 2.00x
+  科技: 293 样本, 平均权重 2.00x
+  体育: 324 样本, 平均权重 1.00x
+  娱乐: 296 样本, 平均权重 1.00x
+  其他: 363 样本, 平均权重 2.00x
+
+训练完成! 耗时: 1946.9s
+============================================================
+类别嵌入已保存至: /home/zzh/webpage-classification/models/hard_negative_train6000.pt
+======================================================================
+ 两阶段分类器 - 训练与评估
+ Stage 1: Embedding (Top-2) + Stage 2: Reranker (Top-1)
+======================================================================
+数据文件: /home/zzh/webpage-classification/data/labeled/labeled.jsonl
+训练样本: 6000 条
+测试样本: 100 条
+Top-K: 2
+Doc版本: v2 (简洁字符串)
+加载路径: /home/zzh/webpage-classification/models/hard_negative_train6000.pt
+======================================================================
+
+[1/5] 加载数据...
+  总计: 6888 条
+  训练集: 6000 条
+  测试集: 100 条
+
+[2/5] 初始化分类器...
+============================================================
+ 两阶段分类器初始化
+============================================================
+
+[Stage 1] 加载 Embedding 模型...
+正在加载模型: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+设备: cuda, 数据类型: torch.bfloat16
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 126.72it/s]
+正在计算类别模板嵌入...
+已初始化 8 个类别的嵌入
+模型加载完成!
+
+[Stage 2] 加载 Reranker 模型...
+  使用默认注意力机制
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|#####     | 2/4 [00:00<00:00, 14.42it/s]
+Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 22.98it/s]
+  Reranker 加载完成: /home/zzh/webpage-classification/models/Qwen3-VL-Reranker-8B
+
+============================================================
+ 初始化完成
+============================================================
+
+[3/5] 加载已训练的类别嵌入...
+类别嵌入已加载: /home/zzh/webpage-classification/models/hard_negative_train6000.pt
+  类别数: 8
+  向量维度: 4096
+
+[4/5] 测试...
+
+  ============================================================
+  两阶段分类 (共 100 条)
+  ============================================================
+You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/transformers/tokenization_utils_base.py:2919: UserWarning: `max_length` is ignored when `padding`=`True` and there is no truncation strategy. To pad to max length, use `padding='max_length'`.
+  warnings.warn(
+  [5959] 稳外贸“拓朋友圈”，“优等生”浙江如何乘风破浪？           
+         Top2: [经济, 时政] → 时政 (0.06)
+  [5960] 立足禀赋 创新打法：浙江县域高质量发展何以开新局？          
+         Top2: [科技, 经济] → 科技 (0.02)
+  [5961] Hakim Kasus Chromebook Sebut Ada Or
+         Top2: [科技, 时政] → 科技 (0.02)
+  [5962] Guru SD Negeri di Tangsel Diduga Le
+         Top2: [社会, 时政] → 社会 (0.07)
+  [5963] BI: Juda Agung Ajukan Pengunduran D
+         Top2: [经济, 时政] → 经济 (0.06)
+  [5964] Pejabat KSP Pernah Tanyakan Aturan 
+         Top2: [时政, 科技] → 时政 (0.03)
+  [5965] Sosok Yoga Naufal, Penumpang Pesawa
+         Top2: [社会, 其他] → 社会 (0.09)
+  [5966] Pengacara Nadiem Sebut Saksi Sidang
+         Top2: [时政, 社会] → 社会 (0.05)
+  [5967] Dari Inggris, Prabowo Pimpin Ratas 
+         Top2: [时政, 社会] → 时政 (0.07)
+  [5968] Kantor Lurah Pondok Jaya Tangsel Di
+         Top2: [社会, 时政] → 社会 (0.07)
+  --- 进度: 10/100 ---
+  [5969] Hujan Deras, Jalan Raya Penghubung 
+         Top2: [社会, 其他] → 社会 (0.06)
+  [5970] 黃心穎積極追夢 型格西裝打扮出騷自彈自唱               
+         Top2: [娱乐, 社会] → 娱乐 (0.18)
+  [5971] 巴基斯坦商場大火燒24小時終撲滅 增至11死 60人失蹤       
+         Top2: [社会, 时政] → 社会 (0.07)
+  [5972] 向氏家族向華炎世界殯儀館設靈 O記反黑逾百警戒備           
+         Top2: [娱乐, 社会] → 社会 (0.07)
+  [5973] 倫敦街頭試用「天眼」助破案 3個月捉100疑犯            
+         Top2: [社会, 时政] → 社会 (0.07)
+  [5974] 麥長青搞餐廳預埋Hey Brother 李思捷唔介意同其他電視台合作 
+         Top2: [娱乐, 社会] → 娱乐 (0.17)
+  [5975] 原來視咁的丨《非常檢控觀》100%還原 重塑現代包青天        
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [5976] 證券總會建議IPO提高散戶配發比例 豁免低流動股票印花稅 設集體訴訟制
+         Top2: [经济, 时政] → 经济 (0.08)
+  [5977] 法律年度開啟典禮︱毛樂禮：司法獨立對繁榮穩定至關重要 公義必須彰顯且被
+         Top2: [时政, 社会] → 社会 (0.03)
+  [5978] Beyond Taiwan’s auspicious economic
+         Top2: [经济, 时政] → 经济 (0.05)
+  --- 进度: 20/100 ---
+  [5979] Iran’s protests don’t fit the Lefti
+         Top2: [时政, 军事] → 军事 (0.01)
+  [5980] AI is irresistible to Britain’s wor
+         Top2: [科技, 经济] → 科技 (0.04)
+  [5981] We saved our local pub from being t
+         Top2: [社会, 其他] → 社会 (0.03)
+  [5982] One year of the new Team Trump — wh
+         Top2: [时政, 社会] → 时政 (0.02)
+  [5983] Starmer is fast running out of parl
+         Top2: [时政, 社会] → 时政 (0.03)
+  [5984] Trump treats America’s en ies bette
+         Top2: [时政, 军事] → 军事 (0.02)
+  [5985] It’s time to start mansplaining aga
+         Top2: [社会, 时政] → 社会 (0.02)
+  [5986] Reeves’s ‘tax timebomb’ threatens t
+         Top2: [经济, 时政] → 经济 (0.02)
+  [5987] KenKen No 6733 | Puzzles | The Time
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5988] Chess Winning Move | Puzzles | The 
+         Top2: [其他, 体育] → 其他 (0.01)
+  --- 进度: 30/100 ---
+  [5989] Set Square No 4243 | Puzzles | The 
+         Top2: [其他, 社会] → 其他 (0.01)
+  [5990] Concise Quintagram No 2468 | Puzzle
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5991] Extra Futoshiki No 1205 | Puzzles |
+         Top2: [其他, 社会] → 其他 (0.01)
+  [5992] Cryptic Quintagram No 2468 | Puzzle
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5993] Futoshiki No 5281 | Puzzles | The T
+         Top2: [其他, 社会] → 其他 (0.01)
+  [5994] Kakuro No 4240 | Puzzles | The Time
+         Top2: [其他, 娱乐] → 其他 (0.01)
+  [5995] 獨家：格陵蘭島的前世今生——從冰雪荒原到大國博弈的戰略要衝      
+         Top2: [时政, 军事] → 军事 (0.02)
+  [5996] 從委內瑞拉到伊朗：川普帝國夢與中共戰略慘敗的黑暗真相         
+         Top2: [时政, 军事] → 时政 (0.02)
+  [5997] خىتاي بىلەن تىركىشىپ، يولدىشىنىڭ ئە
+         Top2: [社会, 时政] → 社会 (0.09)
+  [5998] ئامېرىكا پارلامېنتى تەرىپىدىن ماقۇل
+         Top2: [时政, 社会] → 时政 (0.05)
+  --- 进度: 40/100 ---
+  [5999] خىتاينىڭ ئۇيغۇرلارغا قاراتقان باستۇ
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6000] خىتاينىڭ ئۇيغۇرلارغا قاراتقان باستۇ
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6001] «ھاياتتىن سورا» ناملىق روماندىن ئار
+         Top2: [其他, 社会] → 社会 (0.03)
+  [6002] «ھاياتتىن سورا» ناملىق روماندىن ئار
+         Top2: [其他, 社会] → 社会 (0.03)
+  [6003] Le Pr ier ministre choisit l'utilis
+         Top2: [时政, 社会] → 时政 (0.02)
+  [6004] Les secours appelés au siège de Roc
+         Top2: [科技, 娱乐] → 娱乐 (0.06)
+  [6005] Jean-Noël Barrot: "Personne ne sort
+         Top2: [时政, 经济] → 经济 (0.03)
+  [6006] INFO BFMTV. Sébastien Lecornu passe
+         Top2: [时政, 经济] → 时政 (0.05)
+  [6007] Jean-Noël Barrot : "Non, l'Europe n
+         Top2: [时政, 社会] → 社会 (0.02)
+  [6008] DIRECT. Le Conseil de défense sur l
+         Top2: [时政, 社会] → 时政 (0.06)
+  --- 进度: 50/100 ---
+  [6009] Accident ferroviaire en Espagne: "3
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6010] 2027 Tour de France: Full route of 
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6011] Veterans can be recalled for servic
+         Top2: [军事, 时政] → 军事 (0.05)
+  [6012] Aria Thorpe: Nine-year-old girl die
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6013] Most anticipated video games coming
+         Top2: [科技, 娱乐] → 娱乐 (0.03)
+  [6014] Black cab rapist John Worboys to fa
+         Top2: [社会, 时政] → 社会 (0.07)
+  [6015] T20 World Cup: England cricket star
+         Top2: [体育, 社会] → 体育 (0.03)
+  [6016] US to suspend immigrant visa proces
+         Top2: [时政, 社会] → 社会 (0.04)
+  [6017] 'Major risk' to global economy from
+         Top2: [经济, 时政] → 经济 (0.07)
+  [6018] Trump’s Letter to Norway Should Be 
+         Top2: [时政, 军事] → 时政 (0.04)
+  --- 进度: 60/100 ---
+  [6019] 2026-01-19T00:37:05+08:00          
+         Top2: [经济, 时政] → 经济 (0.04)
+  [6020] 2026-01-18T23:59:00+08:00          
+         Top2: [社会, 其他] → 社会 (0.03)
+  [6021] 2026-01-18T23:10:05+08:00          
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6022] 2026-01-18T23:07:58+08:00          
+         Top2: [娱乐, 社会] → 娱乐 (0.07)
+  [6023] Is Starlink Authoritarian-Proof?   
+         Top2: [科技, 时政] → 科技 (0.04)
+  [6024] Happy 2026! Our team is starting th
+         Top2: [社会, 时政] → 社会 (0.05)
+  [6025] Recapping the Inaugural Cohort of t
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6026] One Quarter of U.S. Homes are Value
+         Top2: [经济, 社会] → 经济 (0.05)
+  [6027] A Guide to Trump’s Second-Term Mili
+         Top2: [军事, 时政] → 军事 (0.09)
+  [6028] Granting Undocumented Students Acce
+         Top2: [时政, 社会] → 社会 (0.04)
+  --- 进度: 70/100 ---
+  [6029] The Digital Divide Reimagined: AI, 
+         Top2: [科技, 时政] → 科技 (0.02)
+  [6030] 园艺物品交易 - 新足迹 - Powered by Discuz!  
+         Top2: [其他, 社会] → 其他 (0.03)
+  [6031] Швейцария позовет Россию на конфере
+         Top2: [科技, 时政] → 时政 (0.04)
+  [6032] WSJ: приглашение войти в "Совет мир
+         Top2: [军事, 时政] → 军事 (0.04)
+  [6033] ЦБ выпустит модернизированные банкн
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6034] Эксперты рассказали об условиях для
+         Top2: [经济, 社会] → 经济 (0.07)
+  [6035] "Газпром" и венгерская MOL согласов
+         Top2: [经济, 时政] → 经济 (0.07)
+  [6036] Испания объявит трехдневный траур п
+         Top2: [社会, 时政] → 社会 (0.14)
+  [6037] Начальнику центра МВД в Коми предъя
+         Top2: [社会, 时政] → 社会 (0.08)
+  [6038] Долина и ее внучка выписались из кв
+         Top2: [娱乐, 社会] → 娱乐 (0.13)
+  --- 进度: 80/100 ---
+  [6039] Habeba Omar                        
+         Top2: [社会, 时政] → 社会 (0.02)
+  [6040] Vietnam's 14th National Party Congr
+         Top2: [时政, 社会] → 时政 (0.03)
+  [6041] Smartmi 3 - máy lọc không khí có kh
+         Top2: [科技, 其他] → 其他 (0.07)
+  [6042] IELTS should not be the goal: Engli
+         Top2: [社会, 其他] → 社会 (0.03)
+  [6043] Smartphone thiết kế giống iPhone 17
+         Top2: [科技, 其他] → 科技 (0.04)
+  [6044] We cannot live in fear of what we e
+         Top2: [社会, 其他] → 社会 (0.05)
+  [6045] Laptop gaming giá 100 triệu đồng, c
+         Top2: [科技, 其他] → 科技 (0.02)
+  [6046] Hanoi deploys plan to ensure absolu
+         Top2: [时政, 社会] → 时政 (0.04)
+  [6047] When it costs less to disregard foo
+         Top2: [社会, 经济] → 社会 (0.03)
+  [6048] 以伊冲突第11日 福尔多核设施是否被摧毁？伊方：“游戏并未结束”   
+         Top2: [时政, 军事] → 军事 (0.08)
+  --- 进度: 90/100 ---
+  [6049] 青海西宁疫情防控措施升级                       
+         Top2: [社会, 时政] → 社会 (0.03)
+  [6050] 【乡村振兴看一线】青海海东：千亩“仙女果”实现经济效益与生态效益双赢 
+         Top2: [社会, 其他] → 社会 (0.04)
+  [6051] 2026经济工作怎么干？专家解读中央经济工作会议           
+         Top2: [经济, 时政] → 时政 (0.06)
+  [6052] 河南新蔡通报一名学生意外死亡：排除刑事案件              
+         Top2: [社会, 时政] → 社会 (0.10)
+  [6053] 海事局辦再生水講解會                         
+         Top2: [社会, 时政] → 社会 (0.04)
+  [6054] 加州億萬富翁稅引發避稅潮　 Google創辦人悄然重組資產版圖 - 澳
+         Top2: [经济, 时政] → 经济 (0.05)
+  [6055] 傳長和擬分拆屈臣氏上市 已選定瑞銀高盛負責推進 - 澳門力報官網   
+         Top2: [经济, 科技] → 经济 (0.10)
+  [6056] 湖南農莊「豬食槽」火鍋爆火　 食客爆滿需提前四五天預訂 - 澳門力報官
+         Top2: [社会, 其他] → 其他 (0.07)
+  [6057] ​WTT杜哈冠軍賽 朱雨玲獲女單冠軍 - 澳門力報官網        
+         Top2: [体育, 娱乐] → 体育 (0.04)
+  [6058] 下一代Kimi將引入新注意力機制　 月之暗面：長期規劃推進至K100 
+         Top2: [科技, 经济] → 科技 (0.07)
+  --- 进度: 100/100 ---
+  ============================================================
+
+
+[5/5] 评估...
+
+======================================================================
+ 评估结果
+======================================================================
+
+  ┌─────────────┬────────────┬────────────┐
+  │   指标      │   准确率     │ topk 准确率 │
+  ├─────────────┼────────────┼────────────┤
+  │ Top-1 (Emb) │   86.00%   │   86.00%   │
+  │ Top-2 +Rrk  │   78.00%   │   98.00%   │
+  └─────────────┴────────────┴────────────┘
+
+  Top-K 召回详情:
+    - Top-1 召回: 86/100 (86.00%)
+    - Top-2 召回: 98/100 (98.00%)
+
+  Top-K + Reranker 准确率详情:
+    - Top-1 (仅Emb): 86/100 (86.00%)
+    - Top-2 +Rrk: 78/100 (78.00%) [净收益: -8]
+
+  各类别准确率:
+    时政: 54.17% (13/24)
+    经济: 76.47% (13/17)
+    军事: 100.00% (3/3)
+    社会: 87.10% (27/31)
+    科技: 85.71% (6/7)
+    体育: 100.00% (3/3)
+    娱乐: 100.00% (4/4)
+    其他: 81.82% (9/11)
+
+  Top-2 未召回的样本 (共 2 条):
+    [6004] Les secours appelés au siège de Rockstar
+           真实: 社会, Top2: ['科技', '娱乐']
+    [6050] 【乡村振兴看一线】青海海东：千亩“仙女果”实现经济效益与生态效益双赢
+           真实: 经济, Top2: ['社会', '其他']
+
+  结果已保存至: /home/zzh/webpage-classification/data/results/hard_negative_train6000_topk2_v2_test100_20260129_155016.json
+======================================================================

@@ -1,0 +1,74 @@
+# 项目配置文件
+
+# 分类类别（8类）
+categories:
+  - 时政
+  - 经济
+  - 军事
+  - 社会
+  - 科技
+  - 体育
+  - 娱乐
+  - 其他
+
+# 优先级（交叉判定时）
+priority_order:
+  时政: 1
+  军事: 2
+  经济: 3
+  社会: 4
+  科技: 5
+  体育: 6
+  娱乐: 7
+  其他: 8
+
+# 数据配置
+data:
+  total_samples: 10000000  # 总样本数
+  labeled_samples: 3000    # 标注样本数
+  train_ratio: 0.7
+  dev_ratio: 0.1
+  test_ratio: 0.2
+
+# 抽取配置
+extraction:
+  max_content_length: 2000  # 正文最大字符数
+  fields:
+    - title
+    - meta_description
+    - meta_keywords
+    - h1
+    - content
+    - url_path
+    - breadcrumb
+
+# 模型配置
+models:
+  # 嵌入模型（推荐使用）
+  - name: qwen3-vl-embedding-8b
+    type: embedding
+    model_path: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+    torch_dtype: bfloat16
+
+  # Ollama 模型
+  - name: qwen2-7b
+    type: ollama
+    model_id: qwen2:7b
+  - name: llama3-8b
+    type: ollama
+    model_id: llama3:8b
+  - name: qwen2-1.5b
+    type: ollama
+    model_id: qwen2:1.5b
+
+# 默认使用的模型
+default_model: qwen3-vl-embedding-8b
+
+# 评估配置
+evaluation:
+  target_accuracy: 0.80  # 验收标准
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1

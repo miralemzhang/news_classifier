@@ -1,0 +1,454 @@
+Log 保存至: data/results/eval_train700_topk4_v2_test150_20260127_140131.log
+======================================================================
+ 两阶段分类器 - 训练与评估
+ Stage 1: Embedding (Top-4) + Stage 2: Reranker (Top-1)
+======================================================================
+数据文件: /home/zzh/webpage-classification/data/labeled/labeled.jsonl
+训练样本: 700 条
+测试样本: 150 条
+Top-K: 4
+Doc版本: v2 (简洁字符串)
+保存路径: models/qwen3_category_train700_topk4.pt
+======================================================================
+
+[1/5] 加载数据...
+  总计: 869 条
+  训练集: 700 条
+  测试集: 150 条
+
+[2/5] 初始化分类器...
+============================================================
+ 两阶段分类器初始化
+============================================================
+
+[Stage 1] 加载 Embedding 模型...
+正在加载模型: /home/zzh/webpage-classification/models/Qwen3-VL-Embedding-8B
+设备: cuda, 数据类型: torch.bfloat16
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 126.05it/s]
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/torch/cuda/__init__.py:283: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  warnings.warn(
+正在计算类别模板嵌入...
+已初始化 8 个类别的嵌入
+模型加载完成!
+
+[Stage 2] 加载 Reranker 模型...
+  使用默认注意力机制
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards: 100%|##########| 4/4 [00:00<00:00, 71.75it/s]
+  Reranker 加载完成: /home/zzh/webpage-classification/models/Qwen3-VL-Reranker-8B
+
+============================================================
+ 初始化完成
+============================================================
+
+[3/5] 训练 Embedding...
+
+============================================================
+ 从标注数据训练类别嵌入
+============================================================
+训练数据分布:
+  时政: 265 条
+  经济: 89 条
+  军事: 40 条
+  社会: 142 条
+  科技: 21 条
+  体育: 29 条
+  娱乐: 42 条
+  其他: 72 条
+  总计: 700 条
+
+计算类别嵌入...
+  时政: 使用 265 个样本
+  经济: 使用 89 个样本
+  军事: 使用 40 个样本
+  社会: 使用 142 个样本
+  科技: 使用 21 个样本
+  体育: 使用 29 个样本
+  娱乐: 使用 42 个样本
+  其他: 使用 72 个样本
+
+训练完成! 耗时: 130.1s
+============================================================
+类别嵌入已保存至: models/qwen3_category_train700_topk4.pt
+
+[4/5] 测试...
+
+  ============================================================
+  两阶段分类 (共 150 条)
+  ============================================================
+You're using a Qwen2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/zzh/miniconda3/envs/Project1/lib/python3.10/site-packages/transformers/tokenization_utils_base.py:2919: UserWarning: `max_length` is ignored when `padding`=`True` and there is no truncation strategy. To pad to max length, use `padding='max_length'`.
+  warnings.warn(
+  [ 700] 澳基會推出新作《澳門與馬禮遜》                    
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.02)
+  [ 701] 王浩与中央新闻单位驻浙机构负责人座谈 为高质量发展建设共同富裕示范区凝
+         Top4: [时政, 社会, 经济, 其他] → 时政 (0.05)
+  [ 702] 地委经济工作会议召开                         
+         Top4: [时政, 经济, 社会, 其他] → 时政 (0.08)
+  [ 703] Indian Country | Season 3, Ep. 14  
+         Top4: [其他, 社会, 时政, 娱乐] → 社会 (0.03)
+  [ 704] Feds' Surveillance Scandal: "Cash m
+         Top4: [社会, 时政, 经济, 其他] → 社会 (0.04)
+  [ 705] FBI Raids Wrong House - No Remorse 
+         Top4: [社会, 时政, 其他, 经济] → 社会 (0.04)
+  [ 706] Unpublished Opinions 3 | Postpositi
+         Top4: [其他, 社会, 娱乐, 时政] → 社会 (0.02)
+  [ 707] Unpublished Opinions 2 | Justice Ho
+         Top4: [其他, 社会, 时政, 娱乐] → 社会 (0.02)
+  [ 708] Unpublished Opinions 5 | Legal Fict
+         Top4: [其他, 社会, 时政, 娱乐] → 社会 (0.01)
+  [ 709] Unpublished Opinions 6 | Little Con
+         Top4: [其他, 时政, 社会, 经济] → 社会 (0.02)
+  --- 进度: 10/150 ---
+  [ 710] The Bubble | Season 2, Ep. 3       
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.04)
+  [ 711] They're Going to Kill This Man | Se
+         Top4: [社会, 其他, 娱乐, 时政] → 社会 (0.04)
+  [ 712] 中央经济工作会议上的这个细节，蕴含深意                
+         Top4: [时政, 经济, 军事, 社会] → 时政 (0.12)
+  [ 713] 学习领悟中央经济工作会议提出的“五个必须”              
+         Top4: [经济, 时政, 社会, 军事] → 时政 (0.08)
+  [ 714] 从中央经济工作会议看“十五五”开局之年中国经济着力点         
+         Top4: [经济, 时政, 军事, 社会] → 时政 (0.10)
+  [ 715] The broken whistle: how systemic co
+         Top4: [体育, 社会, 其他, 时政] → 社会 (0.03)
+  [ 716] 2万亿杭州银行将迎新行长！“75后”副行长张精科升任，为该行最年轻高管
+         Top4: [经济, 时政, 科技, 其他] → 经济 (0.07)
+  [ 717] 一口气调整六个区，杭州的心思你猜猜                  
+         Top4: [时政, 经济, 社会, 其他] → 社会 (0.03)
+  [ 718] 基本法则｜上海地铁撤掉那块广告的那一刻，我终于明白：这个时代不允许再叫
+         Top4: [社会, 其他, 时政, 科技] → 社会 (0.07)
+  [ 719] 小干体｜贾老板更适合做家乡县委书记                  
+         Top4: [社会, 时政, 其他, 经济] → 社会 (0.04)
+  --- 进度: 20/150 ---
+  [ 720] 伊洛｜2025出生人口792万人，相较10年前下跌近千万人      
+         Top4: [时政, 社会, 经济, 军事] → 社会 (0.03)
+  [ 721] 【异闻观止】澎湃新闻｜“污名化成都男性群体”，2名博主被追责     
+         Top4: [社会, 其他, 时政, 科技] → 社会 (0.05)
+  [ 722] 【CDT关注】中国人权HRIC｜中国当局首次阻止天安门母亲年度聚会  
+         Top4: [时政, 社会, 军事, 其他] → 社会 (0.04)
+  [ 723] 【CDT报告汇】欧洲智库民调：特朗普执政一年，中国对外形象好转 （外二
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.02)
+  [ 724] 晚点LatePost｜餐饮业绝境求生                 
+         Top4: [经济, 其他, 社会, 时政] → 经济 (0.06)
+  [ 725] 盘点六条｜日本对中国最大的帮助是什么？                
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.02)
+  [ 726] 基本常识｜当年某某药酒真的抓了谭秦东                 
+         Top4: [社会, 时政, 其他, 经济] → 社会 (0.07)
+  [ 727] 狱望｜伊朗女艺术家维达·拉巴尼的狱中画作               
+         Top4: [社会, 时政, 军事, 其他] → 社会 (0.02)
+  [ 728] Comment le groupement commando amph
+         Top4: [军事, 社会, 时政, 其他] → 军事 (0.06)
+  [ 729] [JDEF] Traque au coeur de la jungle
+         Top4: [军事, 社会, 时政, 其他] → 军事 (0.05)
+  --- 进度: 30/150 ---
+  [ 730] Nouvelle année et nouveau départ po
+         Top4: [军事, 社会, 其他, 时政] → 军事 (0.03)
+  [ 731] Antarctique – Mission de soutien à 
+         Top4: [军事, 社会, 时政, 其他] → 军事 (0.02)
+  [ 732] L’escouade de réserve côtière de Ca
+         Top4: [军事, 社会, 时政, 其他] → 军事 (0.03)
+  [ 733] Inauguration d’un partenariat solid
+         Top4: [社会, 其他, 军事, 时政] → 社会 (0.03)
+  [ 734] Résultats sportifs de la semaine : 
+         Top4: [体育, 社会, 军事, 其他] → 体育 (0.03)
+  [ 735] L’Amiral Ronarc’h appareille pour s
+         Top4: [军事, 时政, 社会, 其他] → 军事 (0.09)
+  [ 736] La 2e brigade blindée au cœur de l'
+         Top4: [军事, 社会, 时政, 其他] → 军事 (0.06)
+  [ 737] Lancement de la campagne de recrute
+         Top4: [军事, 时政, 社会, 其他] → 社会 (0.02)
+  [ 738] On the Streets in Tehran           
+         Top4: [时政, 社会, 军事, 其他] → 社会 (0.03)
+  [ 739] Frontline Update: Iran in Crisis | 
+         Top4: [军事, 时政, 社会, 经济] → 社会 (0.03)
+  --- 进度: 40/150 ---
+  [ 740] Investigating POW Executions       
+         Top4: [军事, 时政, 社会, 经济] → 军事 (0.02)
+  [ 741] De Facto Police Chief Sentenced for
+         Top4: [军事, 时政, 社会, 经济] → 社会 (0.05)
+  [ 742] Turkey: The Return of the Women’s M
+         Top4: [社会, 其他, 娱乐, 时政] → 娱乐 (0.06)
+  [ 743] Frontline Update: Spotlight on Lati
+         Top4: [军事, 时政, 社会, 经济] → 军事 (0.03)
+  [ 744] On the road to the India AI Impact 
+         Top4: [科技, 时政, 经济, 其他] → 科技 (0.04)
+  [ 745] Foresight Africa 2026              
+         Top4: [经济, 时政, 其他, 军事] → 经济 (0.03)
+  [ 746] The Oxford Handbook of Norms Resear
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.03)
+  [ 747] Grasshopper wing structure inspires
+         Top4: [科技, 其他, 经济, 社会] → 科技 (0.05)
+  [ 748] Medications could help the aging br
+         Top4: [社会, 其他, 时政, 经济] → 社会 (0.03)
+  [ 749] What’s the state of the research la
+         Top4: [时政, 社会, 其他, 经济] → 时政 (0.02)
+  --- 进度: 50/150 ---
+  [ 750] US Announces Aid to Bolster Thailan
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.02)
+  [ 751] Myanmar in 2026: Military Dictators
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.02)
+  [ 752] Accused Scam Boss Chen Zhi Arrested
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.01)
+  [ 753] Myanmar Junta Commander Killed in A
+         Top4: [军事, 时政, 社会, 经济] → 军事 (0.01)
+  [ 754] China's Water Diversion Megaproject
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.02)
+  [ 755] билеты онлайн                      
+         Top4: [娱乐, 其他, 社会, 体育] → 娱乐 (0.08)
+  [ 756] Bishkek Arena                      
+         Top4: [娱乐, 体育, 其他, 社会] → 娱乐 (0.09)
+  [ 757] мирные переговоры                  
+         Top4: [军事, 时政, 社会, 经济] → 社会 (0.02)
+  [ 758] Федерер объяснил, вернётся ли в тен
+         Top4: [体育, 娱乐, 其他, 社会] → 体育 (0.07)
+  [ 759] День ангела Георгия 17 января: что 
+         Top4: [其他, 娱乐, 社会, 体育] → 其他 (0.04)
+  --- 进度: 60/150 ---
+  [ 760] Усик против Вайлдера: эксперт оцени
+         Top4: [体育, 娱乐, 其他, 社会] → 体育 (0.02)
+  [ 761] день ангела 16 января              
+         Top4: [其他, 娱乐, 社会, 时政] → 其他 (0.04)
+  [ 762] День ангела Елены 15 января: значен
+         Top4: [其他, 娱乐, 社会, 体育] → 其他 (0.03)
+  [ 763] Джо Байден                         
+         Top4: [科技, 社会, 其他, 时政] → 社会 (0.02)
+  [ 764] День ангела Адама 14 января: что зн
+         Top4: [其他, 娱乐, 社会, 体育] → 其他 (0.05)
+  [ 765] Metal detector a scuola, Valditara:
+         Top4: [社会, 时政, 其他, 军事] → 社会 (0.06)
+  [ 766] Guerra Ucraina - Russia, le news di
+         Top4: [军事, 时政, 社会, 经济] → 军事 (0.04)
+  [ 767] Spagna, le prime immagini delle car
+         Top4: [社会, 军事, 时政, 其他] → 社会 (0.10)
+  [ 768] India, in ospedale frotte di topi c
+         Top4: [社会, 其他, 时政, 军事] → 社会 (0.07)
+  [ 769] La lotta per l’asciugamano, gli ins
+         Top4: [体育, 社会, 其他, 娱乐] → 体育 (0.04)
+  --- 进度: 70/150 ---
+  [ 770] Metal detector a scuola, Valditara:
+         Top4: [社会, 时政, 其他, 军事] → 社会 (0.05)
+  [ 771] La battaglia del mare a Spotorno: i
+         Top4: [社会, 其他, 时政, 经济] → 社会 (0.05)
+  [ 772] Füllkrug, non solo gol: ecco perché
+         Top4: [体育, 其他, 社会, 娱乐] → 体育 (0.06)
+  [ 773] Ranucci replica a Barbareschi: “Dov
+         Top4: [时政, 娱乐, 社会, 其他] → 社会 (0.03)
+  [ 774] Jovanotti dal palco della nostra fe
+         Top4: [娱乐, 其他, 社会, 时政] → 娱乐 (0.10)
+  [ 775] Olas de 7 metros azotan la Costa Br
+         Top4: [社会, 其他, 时政, 军事] → 其他 (0.03)
+  [ 776] Canta ia muestra su pesar por las v
+         Top4: [社会, 其他, 时政, 体育] → 社会 (0.08)
+  [ 777] Ortodoxos se sumergen en Skopie en 
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.03)
+  [ 778] Sube el caudal del río Ter a su pas
+         Top4: [社会, 其他, 时政, 军事] → 其他 (0.03)
+  [ 779] Medios italianos y al anes recogen 
+         Top4: [社会, 时政, 其他, 军事] → 社会 (0.10)
+  --- 进度: 80/150 ---
+  [ 780] Las Fuerzas Armadas logran el pr io
+         Top4: [社会, 军事, 时政, 其他] → 社会 (0.05)
+  [ 781] Refuerzo de sanitarios para donar s
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.09)
+  [ 782] El operativo se centra en acceder a
+         Top4: [社会, 其他, 时政, 军事] → 社会 (0.16)
+  [ 783] Psicólogo sanitario, explica cómo t
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.11)
+  [ 784] Sindicato Ferroviario señala que es
+         Top4: [社会, 其他, 时政, 经济] → 社会 (0.13)
+  [ 785] 国货航重庆区高管落马 上市后已有多人被查               
+         Top4: [经济, 时政, 军事, 社会] → 经济 (0.05)
+  [ 786] 四看中央经济工作会                          
+         Top4: [经济, 时政, 军事, 社会] → 时政 (0.06)
+  [ 787] 中央经济工作会议的十大亮点                      
+         Top4: [经济, 时政, 军事, 社会] → 时政 (0.05)
+  [ 788] 中央经济工作会议：实施更加积极有为宏观政策 坚持内需主导(含视频)  
+         Top4: [经济, 时政, 军事, 社会] → 时政 (0.10)
+  [ 789] 汕头一自建房发生火灾致12人遇难 广东省政府成立联合调查组      
+         Top4: [社会, 时政, 经济, 其他] → 社会 (0.04)
+  --- 进度: 90/150 ---
+  [ 790] 能源内参｜河南三门峡发生铁路工程事故 5人遇难；工信部部长李乐成：20
+         Top4: [经济, 时政, 军事, 社会] → 社会 (0.06)
+  [ 791] 英国拟大幅收紧移民政策 停止难民永久庇护、永居门槛提至20年     
+         Top4: [时政, 军事, 经济, 社会] → 社会 (0.04)
+  [ 792] 从中央经济工作会议看2025年资本市场改革动向            
+         Top4: [经济, 时政, 军事, 其他] → 时政 (0.05)
+  [ 793] Civic Exchange’s Recommendations fo
+         Top4: [经济, 时政, 其他, 社会] → 时政 (0.07)
+  [ 794] 中评专访：中韩关系要稳健推进破半岛僵局                
+         Top4: [时政, 军事, 经济, 社会] → 时政 (0.06)
+  [ 795] 仇长根：日本议员为何密集窜台？                    
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.03)
+  [ 796] 家办策略见效　香港超级富豪增22.9%                
+         Top4: [经济, 时政, 其他, 军事] → 经济 (0.05)
+  [ 797] 菲律宾涉台关系新动向：驱动因素、多维影响及未来走向          
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.03)
+  [ 798] 中评深度：彭韬析习特通话与台海                    
+         Top4: [时政, 军事, 经济, 社会] → 时政 (0.05)
+  [ 799] 最新民调：独派大幅跌7.5%　赖上任最低               
+         Top4: [时政, 军事, 社会, 经济] → 社会 (0.02)
+  --- 进度: 100/150 ---
+  [ 800] 中台湾党部主委人事　郑丽文着眼县市长选举               
+         Top4: [时政, 社会, 军事, 经济] → 时政 (0.03)
+  [ 801] 陆人申请在台定居新规　应缴放弃护照公证书               
+         Top4: [时政, 军事, 经济, 社会] → 社会 (0.05)
+  [ 802] 记住“96120”！全市统一！正式开通 - 临安新闻网 | 临安新闻门
+         Top4: [社会, 其他, 科技, 时政] → 社会 (0.08)
+  [ 803] 西宁中支以模范机关创建为契机 办好“人民币发行为人民”五件实事    
+         Top4: [经济, 其他, 社会, 时政] → 社会 (0.03)
+  [ 804] 2025年中国人民银行工作会议召开                  
+         Top4: [经济, 时政, 社会, 军事] → 时政 (0.09)
+  [ 805] 西宁中心支行：各式督导多措并举 调查宣传群策群力           
+         Top4: [经济, 其他, 时政, 社会] → 经济 (0.04)
+  [ 806] 台股創高外資卻提款280億元 創天價的台積電及這6檔漲停股遭調節   
+         Top4: [经济, 时政, 科技, 其他] → 经济 (0.12)
+  [ 807] 傳奇投資者Grantham警告AI泡沫：機會不在股市而在風險投資   
+         Top4: [经济, 科技, 时政, 其他] → 经济 (0.04)
+  [ 808] 胡潤中國AI企業50強榜出爐！前十強AI晶片企業佔七席 寒武紀、摩爾線
+         Top4: [科技, 经济, 其他, 时政] → 科技 (0.05)
+  [ 809] 美光收購力積電銅鑼廠 2027年全球DRAM供給上修         
+         Top4: [经济, 科技, 其他, 时政] → 经济 (0.08)
+  --- 进度: 110/150 ---
+  [ 810] 不再只是科技股！華爾街：美股漲勢向傳統產業全面擴散          
+         Top4: [经济, 科技, 时政, 其他] → 经济 (0.08)
+  [ 811] 蘋果重返中國手機市占第一！iPhone出貨暴增28%、華為小米出貨量衰
+         Top4: [科技, 经济, 其他, 时政] → 经济 (0.04)
+  [ 812] 美股周一因馬丁路德金恩紀念日休市                   
+         Top4: [经济, 时政, 其他, 军事] → 经济 (0.06)
+  [ 813] 想賺AI又怕泡沫？美銀提「完美對沖」策略：改抱這四大相鄰領域     
+         Top4: [经济, 科技, 其他, 时政] → 经济 (0.06)
+  [ 814] 高盛2026年中國經濟展望：出口韌性支撐4.8%增長 房地產拖累預計逐
+         Top4: [经济, 时政, 军事, 社会] → 经济 (0.10)
+  [ 815] 投資人拋售美元、資金轉向避險！市場解讀川普揚言對格陵蘭祭關稅     
+         Top4: [经济, 时政, 军事, 社会] → 经济 (0.08)
+  [ 816] Australia Day long weekend beer sup
+         Top4: [社会, 经济, 时政, 军事] → 社会 (0.05)
+  [ 817] Inflation, interest rates: IMF warn
+         Top4: [经济, 时政, 军事, 社会] → 经济 (0.06)
+  [ 818] Chris Webster practice closure foll
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.08)
+  [ 819] Under-19 World Cup: Australia will 
+         Top4: [体育, 社会, 其他, 时政] → 体育 (0.04)
+  --- 进度: 120/150 ---
+  [ 820] Man taken to hospital after fox att
+         Top4: [社会, 时政, 军事, 其他] → 其他 (0.05)
+  [ 821] What’s open Australia Day 2026: sho
+         Top4: [其他, 社会, 经济, 时政] → 其他 (0.03)
+  [ 822] Hanson claims Charlie Kirk ‘assassi
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.03)
+  [ 823] 11yo surfer ‘rattled’ amid second s
+         Top4: [社会, 时政, 其他, 军事] → 社会 (0.04)
+  [ 824] Bakehouse by Vic Brighton vandalise
+         Top4: [社会, 其他, 时政, 娱乐] → 社会 (0.05)
+  [ 825] Labor strategist Tim Picton dies we
+         Top4: [社会, 时政, 军事, 经济] → 社会 (0.05)
+  [ 826] Saurom anuncia Meet & Greet exclusi
+         Top4: [娱乐, 其他, 社会, 体育] → 娱乐 (0.09)
+  [ 827] Ilopango Air Show 2026 ya tiene fec
+         Top4: [娱乐, 其他, 社会, 体育] → 社会 (0.02)
+  [ 828] La cuarta temporada de “Bridgerton”
+         Top4: [娱乐, 其他, 社会, 体育] → 娱乐 (0.07)
+  [ 829] Video| Agua Escondida, el rincón co
+         Top4: [其他, 社会, 娱乐, 经济] → 其他 (0.04)
+  --- 进度: 130/150 ---
+  [ 830] Embutidos Amparito: 100 años de tra
+         Top4: [其他, 社会, 娱乐, 经济] → 其他 (0.05)
+  [ 831] Agua Escondida, el rincón con vista
+         Top4: [其他, 社会, 娱乐, 时政] → 其他 (0.04)
+  [ 832] Conocé los precios de la gasolina y
+         Top4: [经济, 其他, 社会, 时政] → 社会 (0.04)
+  [ 833] Oro y plata alcanzan máximos histór
+         Top4: [经济, 时政, 其他, 社会] → 经济 (0.04)
+  [ 834] Nuevas leyes que entraron en vigenc
+         Top4: [时政, 社会, 经济, 军事] → 社会 (0.02)
+  [ 835] Embutidos Amparito: 100 años de tra
+         Top4: [其他, 社会, 娱乐, 经济] → 其他 (0.04)
+  [ 836] CollegeDekho names Tapan Jindal as 
+         Top4: [科技, 经济, 其他, 社会] → 经济 (0.05)
+  [ 837] Nissan names Gagan Mangal as Head o
+         Top4: [经济, 科技, 时政, 其他] → 经济 (0.02)
+  [ 838] Gaurav Laghate to Lead Corporate Br
+         Top4: [娱乐, 经济, 科技, 其他] → 娱乐 (0.04)
+  [ 839] Coach Names Arjoon Bose Vice Presid
+         Top4: [经济, 其他, 时政, 社会] → 其他 (0.04)
+  --- 进度: 140/150 ---
+  [ 840] Flipkart appoints Jane Duke as Chie
+         Top4: [科技, 经济, 其他, 时政] → 经济 (0.05)
+  [ 841] CleanStart appoints Anil Dhoot as C
+         Top4: [科技, 经济, 其他, 社会] → 经济 (0.02)
+  [ 842] boAt promotes Sammyak Jain to Busin
+         Top4: [科技, 经济, 其他, 时政] → 经济 (0.03)
+  [ 843] Schaeffler appoints Maximilian Fied
+         Top4: [经济, 时政, 军事, 社会] → 经济 (0.04)
+  [ 844] GRB Ghee brand Founder G. R. Balasu
+         Top4: [其他, 经济, 社会, 时政] → 经济 (0.02)
+  [ 845] Dina Powell McCormick Takes on Top 
+         Top4: [科技, 经济, 其他, 时政] → 经济 (0.03)
+  [ 846] Jasmine Aikey wins top college socc
+         Top4: [体育, 社会, 其他, 时政] → 体育 (0.05)
+  [ 847] Five thrilling Stanford Athletics m
+         Top4: [体育, 其他, 社会, 娱乐] → 体育 (0.04)
+  [ 848] Blume Earthquake Engineering Center
+         Top4: [其他, 社会, 科技, 经济] → 社会 (0.02)
+  [ 849] Le Venezuela : un gros caillou dans
+         Top4: [时政, 军事, 社会, 经济] → 时政 (0.03)
+  --- 进度: 150/150 ---
+  ============================================================
+
+
+[5/5] 评估...
+
+======================================================================
+ 评估结果
+======================================================================
+
+  ┌─────────────┬────────────┬────────────┐
+  │   指标      │   准确率   │   召回率   │
+  ├─────────────┼────────────┼────────────┤
+  │ Top-1 (Emb) │   66.00%   │   66.00%   │
+  │ Top-2 +Rrk  │   64.67%   │   82.67%   │
+  │ Top-3 +Rrk  │   62.00%   │   94.00%   │
+  │ Top-4 +Rrk  │   60.67%   │   96.00%   │
+  └─────────────┴────────────┴────────────┘
+
+  Top-K 召回详情:
+    - Top-1 召回: 99/150 (66.00%)
+    - Top-2 召回: 124/150 (82.67%)
+    - Top-3 召回: 141/150 (94.00%)
+    - Top-4 召回: 144/150 (96.00%)
+
+  Top-K + Reranker 准确率详情:
+    - Top-1 (仅Emb): 99/150 (66.00%)
+    - Top-2 +Rrk: 97/150 (64.67%) [净收益: -2]
+    - Top-3 +Rrk: 93/150 (62.00%) [净收益: -6]
+    - Top-4 +Rrk: 91/150 (60.67%) [净收益: -8]
+
+  各类别准确率:
+    时政: 64.00% (16/25)
+    经济: 68.97% (20/29)
+    军事: 66.67% (8/12)
+    社会: 71.79% (28/39)
+    科技: 33.33% (1/3)
+    体育: 87.50% (7/8)
+    娱乐: 75.00% (3/4)
+    其他: 26.67% (8/30)
+
+  Top-4 未召回的样本 (共 6 条):
+    [ 746] The Oxford Handbook of Norms Research in
+           真实: 其他, Top4: ['时政', '军事', '社会', '经济']
+    [ 748] Medications could help the aging brain c
+           真实: 科技, Top4: ['社会', '其他', '时政', '经济']
+    [ 749] What’s the state of the research landsca
+           真实: 科技, Top4: ['时政', '社会', '其他', '经济']
+    [ 757] мирные переговоры
+           真实: 其他, Top4: ['军事', '时政', '社会', '经济']
+    [ 790] 能源内参｜河南三门峡发生铁路工程事故 5人遇难；工信部部长李乐成：2026年要以
+           真实: 其他, Top4: ['经济', '时政', '军事', '社会']
+
+  结果已保存至: data/results/eval_train700_topk4_v2_test150.json
+======================================================================

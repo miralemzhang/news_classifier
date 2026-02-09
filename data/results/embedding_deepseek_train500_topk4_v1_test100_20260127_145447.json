@@ -1,0 +1,78 @@
+{
+  "timestamp": "20260127_145447",
+  "config": {
+    "method": "Embedding + DeepSeek",
+    "train_count": 500,
+    "test_count": 100,
+    "top_k": 4,
+    "doc_version": "v1"
+  },
+  "overall": {
+    "final_accuracy": 0.68,
+    "total": 100,
+    "top1_recall": 0.67,
+    "top2_recall": 0.91,
+    "top3_recall": 0.95,
+    "top4_recall": 0.99,
+    "top1_deepseek_accuracy": 0.67,
+    "top2_deepseek_accuracy": 0.68,
+    "top3_deepseek_accuracy": 0.68,
+    "top4_deepseek_accuracy": 0.68
+  },
+  "per_class": {
+    "时政": {
+      "accuracy": 0.6875,
+      "correct": 33,
+      "total": 48
+    },
+    "经济": {
+      "accuracy": 0.4444444444444444,
+      "correct": 4,
+      "total": 9
+    },
+    "军事": {
+      "accuracy": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "社会": {
+      "accuracy": 0.75,
+      "correct": 6,
+      "total": 8
+    },
+    "科技": {
+      "accuracy": 0.9166666666666666,
+      "correct": 11,
+      "total": 12
+    },
+    "体育": {
+      "accuracy": 1.0,
+      "correct": 3,
+      "total": 3
+    },
+    "娱乐": {
+      "accuracy": 0.7142857142857143,
+      "correct": 5,
+      "total": 7
+    },
+    "其他": {
+      "accuracy": 0.3,
+      "correct": 3,
+      "total": 10
+    }
+  },
+  "errors": [
+    {
+      "id": 536,
+      "title": "Цусны хавдартай хүүхдэд цусны үүдэл эс шилжүүлэн с",
+      "true": "科技",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政",
+        "其他",
+        "经济"
+      ]
+    }
+  ]
+}

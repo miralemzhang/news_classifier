@@ -1,0 +1,277 @@
+{
+  "timestamp": "2026-01-29 16:21:50",
+  "config": {
+    "train_count": 6000,
+    "test_count": 800,
+    "top_k": 2,
+    "doc_version": "v2",
+    "data_path": "/home/zzh/webpage-classification/data/labeled/labeled.jsonl",
+    "save_path": null,
+    "load_path": "/home/zzh/webpage-classification/models/hard_negative_train6000.pt"
+  },
+  "overall": {
+    "total": 800,
+    "top1_accuracy": 0.8775,
+    "top1_correct": 702,
+    "top1_recall": 0.8775,
+    "top1_recall_count": 702,
+    "top2_recall": 0.97625,
+    "top2_recall_count": 781,
+    "top2_reranker_accuracy": 0.7275,
+    "top2_reranker_correct": 582,
+    "top2_reranker_net_gain": -120
+  },
+  "per_class": {
+    "时政": {
+      "accuracy": 0.4344569288389513,
+      "correct": 116,
+      "total": 267
+    },
+    "经济": {
+      "accuracy": 0.753968253968254,
+      "correct": 95,
+      "total": 126
+    },
+    "军事": {
+      "accuracy": 0.9545454545454546,
+      "correct": 42,
+      "total": 44
+    },
+    "社会": {
+      "accuracy": 0.9558823529411765,
+      "correct": 195,
+      "total": 204
+    },
+    "科技": {
+      "accuracy": 0.8372093023255814,
+      "correct": 36,
+      "total": 43
+    },
+    "体育": {
+      "accuracy": 0.9180327868852459,
+      "correct": 56,
+      "total": 61
+    },
+    "娱乐": {
+      "accuracy": 1.0,
+      "correct": 30,
+      "total": 30
+    },
+    "其他": {
+      "accuracy": 0.48,
+      "correct": 12,
+      "total": 25
+    }
+  },
+  "errors": [
+    {
+      "id": 6004,
+      "title": "Les secours appelés au siège de Rockstar North en ",
+      "true": "社会",
+      "pred": "娱乐",
+      "topk": [
+        "科技",
+        "娱乐"
+      ],
+      "confidence": 0.057373046875
+    },
+    {
+      "id": 6050,
+      "title": "【乡村振兴看一线】青海海东：千亩“仙女果”实现经济效益与生态效益双赢",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "其他"
+      ],
+      "confidence": 0.0361328125
+    },
+    {
+      "id": 6068,
+      "title": "Estas son las cortitas de hoy lunes 19 de enero de",
+      "true": "其他",
+      "pred": "社会",
+      "topk": [
+        "时政",
+        "社会"
+      ],
+      "confidence": 0.0279541015625
+    },
+    {
+      "id": 6111,
+      "title": "二零二四年獲減撥款一億五千萬",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政"
+      ],
+      "confidence": 0.068359375
+    },
+    {
+      "id": 6124,
+      "title": "Commission d’enquête sur l’audiovisuel public : l’",
+      "true": "时政",
+      "pred": "娱乐",
+      "topk": [
+        "娱乐",
+        "社会"
+      ],
+      "confidence": 0.0771484375
+    },
+    {
+      "id": 6155,
+      "title": "Sudan: Business steadily returns to Khartoum marke",
+      "true": "经济",
+      "pred": "军事",
+      "topk": [
+        "时政",
+        "军事"
+      ],
+      "confidence": 0.018798828125
+    },
+    {
+      "id": 6189,
+      "title": "India's shared geometric art with Iran and Ottoman",
+      "true": "其他",
+      "pred": "娱乐",
+      "topk": [
+        "娱乐",
+        "时政"
+      ],
+      "confidence": 0.048828125
+    },
+    {
+      "id": 6225,
+      "title": "Налог на туман и запах тайги еще не придумали - Га",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "其他"
+      ],
+      "confidence": 0.03955078125
+    },
+    {
+      "id": 6284,
+      "title": "Chicago Department Of Aviation To Explore Sponsors",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政"
+      ],
+      "confidence": 0.042724609375
+    },
+    {
+      "id": 6291,
+      "title": "海南机场集团冬春航季计划保障航班超20万架次，累计通达城市达333个",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政"
+      ],
+      "confidence": 0.0419921875
+    },
+    {
+      "id": 6292,
+      "title": "海南航空计划8月26日起开通海口—莫斯科国际航线",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政"
+      ],
+      "confidence": 0.0306396484375
+    },
+    {
+      "id": 6445,
+      "title": "一小时生死线：大型企业应对中国网络安全事件新规的",
+      "true": "其他",
+      "pred": "社会",
+      "topk": [
+        "科技",
+        "社会"
+      ],
+      "confidence": 0.0179443359375
+    },
+    {
+      "id": 6562,
+      "title": "Georgian IGF",
+      "true": "其他",
+      "pred": "时政",
+      "topk": [
+        "科技",
+        "时政"
+      ],
+      "confidence": 0.00970458984375
+    },
+    {
+      "id": 6604,
+      "title": "Indian tourists dominate Sri Lanka travel with 5.3",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政"
+      ],
+      "confidence": 0.023681640625
+    },
+    {
+      "id": 6619,
+      "title": "Karl Marx (11 de julio de 1868): Carta a Ludwig Ku",
+      "true": "其他",
+      "pred": "社会",
+      "topk": [
+        "时政",
+        "社会"
+      ],
+      "confidence": 0.0145263671875
+    },
+    {
+      "id": 6620,
+      "title": "Karl Marx (8 de enero de 1868): Carta a F. Engels",
+      "true": "其他",
+      "pred": "社会",
+      "topk": [
+        "时政",
+        "社会"
+      ],
+      "confidence": 0.01361083984375
+    },
+    {
+      "id": 6648,
+      "title": "浙江省经济信息中心",
+      "true": "经济",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "时政"
+      ],
+      "confidence": 0.0216064453125
+    },
+    {
+      "id": 6671,
+      "title": "Lynda Moore finds a subtler side to money in relat",
+      "true": "社会",
+      "pred": "其他",
+      "topk": [
+        "经济",
+        "其他"
+      ],
+      "confidence": 0.0439453125
+    },
+    {
+      "id": 6732,
+      "title": "西宁气象助力打造高原“菜篮子” ——气候“凉资源” 产业“热动能”",
+      "true": "经济",
+      "pred": "其他",
+      "topk": [
+        "其他",
+        "科技"
+      ],
+      "confidence": 0.0191650390625
+    }
+  ]
+}

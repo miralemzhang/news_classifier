@@ -1,0 +1,156 @@
+{
+  "timestamp": "2026-01-27 14:08:30",
+  "config": {
+    "train_count": 700,
+    "test_count": 150,
+    "top_k": 4,
+    "doc_version": "v2",
+    "data_path": "/home/zzh/webpage-classification/data/labeled/labeled.jsonl",
+    "save_path": "models/qwen3_category_train700_topk4.pt",
+    "load_path": null
+  },
+  "overall": {
+    "total": 150,
+    "top1_accuracy": 0.66,
+    "top1_correct": 99,
+    "top1_recall": 0.66,
+    "top1_recall_count": 99,
+    "top2_recall": 0.8266666666666667,
+    "top2_recall_count": 124,
+    "top3_recall": 0.94,
+    "top3_recall_count": 141,
+    "top4_recall": 0.96,
+    "top4_recall_count": 144,
+    "top2_reranker_accuracy": 0.6466666666666666,
+    "top2_reranker_correct": 97,
+    "top2_reranker_net_gain": -2,
+    "top3_reranker_accuracy": 0.62,
+    "top3_reranker_correct": 93,
+    "top3_reranker_net_gain": -6,
+    "top4_reranker_accuracy": 0.6066666666666667,
+    "top4_reranker_correct": 91,
+    "top4_reranker_net_gain": -8
+  },
+  "per_class": {
+    "时政": {
+      "accuracy": 0.64,
+      "correct": 16,
+      "total": 25
+    },
+    "经济": {
+      "accuracy": 0.6896551724137931,
+      "correct": 20,
+      "total": 29
+    },
+    "军事": {
+      "accuracy": 0.6666666666666666,
+      "correct": 8,
+      "total": 12
+    },
+    "社会": {
+      "accuracy": 0.717948717948718,
+      "correct": 28,
+      "total": 39
+    },
+    "科技": {
+      "accuracy": 0.3333333333333333,
+      "correct": 1,
+      "total": 3
+    },
+    "体育": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8
+    },
+    "娱乐": {
+      "accuracy": 0.75,
+      "correct": 3,
+      "total": 4
+    },
+    "其他": {
+      "accuracy": 0.26666666666666666,
+      "correct": 8,
+      "total": 30
+    }
+  },
+  "errors": [
+    {
+      "id": 746,
+      "title": "The Oxford Handbook of Norms Research in Internati",
+      "true": "其他",
+      "pred": "时政",
+      "topk": [
+        "时政",
+        "军事",
+        "社会",
+        "经济"
+      ],
+      "confidence": 0.025146484375
+    },
+    {
+      "id": 748,
+      "title": "Medications could help the aging brain cope with s",
+      "true": "科技",
+      "pred": "社会",
+      "topk": [
+        "社会",
+        "其他",
+        "时政",
+        "经济"
+      ],
+      "confidence": 0.03466796875
+    },
+    {
+      "id": 749,
+      "title": "What’s the state of the research landscape?",
+      "true": "科技",
+      "pred": "时政",
+      "topk": [
+        "时政",
+        "社会",
+        "其他",
+        "经济"
+      ],
+      "confidence": 0.0233154296875
+    },
+    {
+      "id": 757,
+      "title": "мирные переговоры",
+      "true": "其他",
+      "pred": "社会",
+      "topk": [
+        "军事",
+        "时政",
+        "社会",
+        "经济"
+      ],
+      "confidence": 0.0247802734375
+    },
+    {
+      "id": 790,
+      "title": "能源内参｜河南三门峡发生铁路工程事故 5人遇难；工信部部长李乐成：2026年要以整治“内卷式”竞争为",
+      "true": "其他",
+      "pred": "社会",
+      "topk": [
+        "经济",
+        "时政",
+        "军事",
+        "社会"
+      ],
+      "confidence": 0.056640625
+    },
+    {
+      "id": 804,
+      "title": "2025年中国人民银行工作会议召开",
+      "true": "其他",
+      "pred": "时政",
+      "topk": [
+        "经济",
+        "时政",
+        "社会",
+        "军事"
+      ],
+      "confidence": 0.0888671875
+    }
+  ]
+}

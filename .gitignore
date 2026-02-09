@@ -1,0 +1,33 @@
+# Models (too large for GitHub)
+models/
+package/models/Qwen3-VL-Embedding-8B/
+package/src/siglip2-so400m-patch16-512/
+
+# Data
+data/raw/
+data/extracted/
+data/sampled/
+data/classified/
+data/labeled/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+*.pt
+!package/models/*.pt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
