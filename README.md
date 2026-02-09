@@ -1,6 +1,6 @@
 # News-Filter
 
-Webpage classifier using embedding similarity. Powered by [Qwen3-VL-Embedding-8B](https://huggingface.co/Qwen/Qwen3-VL-Embedding-8B) with hard-negative training. No fine-tuning required — pure embedding similarity.
+Webpage classifier using embedding similarity. Mainly powered by [Qwen3-VL-Embedding-8B](https://huggingface.co/Qwen/Qwen3-VL-Embedding-8B) with hard-negative training and fine-tuning.
 
 ## How It Works
 
